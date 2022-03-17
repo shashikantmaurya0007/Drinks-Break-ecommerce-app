@@ -1,0 +1,123 @@
+.apnatheka_navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.navbar_search {
+    display: flex;
+    width: 30rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-left: 1px solid grey;
+}
+
+.search input {
+    border: 0px;
+    width: 100%;
+    border-radius: 1rem;
+    padding-left: 1rem;
+}
+
+.lab-input {
+    width: 90%;
+}
+
+.lab-input.search {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.search input:focus {
+    /* background-color: #f5f6f4;
+    outline: 1px solid #b8bfb0;
+    border-radius: 2rem; */
+    border: none;
+    border-radius: 2pt;
+    box-shadow: 0 0 0 1pt grey;
+    outline: none;
+    transition: 0.1s;
+}
+
+.search_btn {
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1rem;
+    padding: 0.5rem 0px;
+}
+
+
+/* home and shop button  */
+
+.home_shop_nav {
+    display: flex;
+    gap: 10px;
+}
+
+
+/* home button */
+
+.container_btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.container_btn_lower_text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.navbar_btn_container {
+    display: flex;
+    gap: 10px;
+    padding-top: 0.3rem;
+}
+
+
+/* user navbar style */
+
+.user_navbar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 3rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+.user_navbar_option {
+    padding: 0.4rem 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+}
+
+.user_navbar_option:hover {
+    color: var(--hover-font-color);
+    background-color: var(--primary-hover-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.break {
+    height: 2px;
+    background-color: var(--primary-button-color);
+    opacity: 0.4;
+}
+
+.badge-up {
+    background-color: var(--primary-button-color);
+    color: var(--hover-font-color);
+}
+
+
+/* .user_navbar */
