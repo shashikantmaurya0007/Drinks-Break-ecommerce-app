@@ -50,7 +50,7 @@ const Navbar = () => {
             </div>
           </a>
         </section>
-        <UserProfileInNavbar></UserProfileInNavbar>
+        <UserProfileInNavbar />
       </nav>
     </div>
   );
