@@ -37,10 +37,12 @@
 .inside_banner h1 {
     font-size: 3rem;
     font-weight: 900;
+    letter-spacing: 4px;
     /* opacity: 0.7; */
 }
 
 .inside_banner h2 {
+    letter-spacing: 2px;
     font-size: 2.5rem;
     font-weight: 800;
     /* opacity: 0.6; */
@@ -68,7 +70,7 @@
 
 .categories_title span {
     font-size: 7rem;
-    color: var(--Drinks-Break-primary-color);
+    color: var(--primary-button-color);
 }
 
 
@@ -86,7 +88,7 @@
     width: 15rem;
     position: relative;
     height: 20rem;
-    padding: var(--padding-large);
+    padding: 1rem;
     background-color: whitesmoke;
     border-radius: 0.5rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -147,9 +149,6 @@
     .inside-banner {
         height: 38vh;
     }
-    .banner_img_container {
-        /* background-size: contain; */
-    }
     .apnatheka_navbar_logo span+span {
         font-size: 1.5rem;
     }
@@ -162,6 +161,7 @@
     .inside_banner h1 {
         font-size: 8rem;
         font-weight: 900;
+        letter-spacing: 17px;
         /* opacity: 0.7; */
     }
     .inside_banner h2 {

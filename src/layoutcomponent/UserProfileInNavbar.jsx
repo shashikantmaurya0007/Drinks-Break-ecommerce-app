@@ -10,10 +10,7 @@ const UserProfileInNavbar = () => {
   };
   return (
     <section>
-      <section
-      // onMouseEnter={() => setDisplay("block")}
-      // onMouseLeave={() => setTimeout(() => setDisplay("none"), 5000)}
-      >
+      <section>
         <div
           className="container_btn"
           onClick={() =>
