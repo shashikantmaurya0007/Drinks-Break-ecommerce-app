@@ -19,7 +19,7 @@ const Navbar = () => {
         setShowHamburgerMenu={setShowHamburgerMenu}
       ></HamburgerNavbar>
       <nav class="apnatheka_navbar">
-        <i class="bi bi-list" onClick={displayHamburger}></i>
+        <i class="bi bi-list hamburger" onClick={displayHamburger}></i>
         <a class="redirection" href="./index.html">
           <Logo></Logo>
         </a>

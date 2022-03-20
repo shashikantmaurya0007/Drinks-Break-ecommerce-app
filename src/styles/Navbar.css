@@ -127,6 +127,10 @@
     color: var(--hover-font-color);
 }
 
+.hamburger {
+    display: none;
+}
+
 .hamburger_navbar {
     position: fixed;
     width: 17rem;
@@ -201,6 +205,9 @@
         display: block;
     }
     .hamburger_search {
+        display: block;
+    }
+    .hamburger {
         display: block;
     }
 }
