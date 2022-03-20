@@ -6,7 +6,7 @@ const LandingPageImage = () => {
       <div className={styles.inside_banner}>
         <h1>Drinks-Break</h1>
         <h2>20% off</h2>
-        <a href="#" className={styles.banner_btn}>
+        <a href="https://www.google.com/" className={styles.banner_btn}>
           Grab Your offer Now
         </a>
       </div>

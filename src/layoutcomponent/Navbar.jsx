@@ -25,13 +25,13 @@ const Navbar = () => {
         </a>
         <section className="home_shop_nav">
           <div className="container_btn">
-            <a href="#" class="btn btn-primary btn-icon">
+            <a href="https://www.google.com/" class="btn btn-primary btn-icon">
               <i class="bi bi-house-door-fill"></i>
             </a>
             <span className="container_btn_lower_text">Home</span>
           </div>
           <div className="container_btn">
-            <a href="#" class="btn btn-primary btn-icon">
+            <a href="https://www.google.com/" class="btn btn-primary btn-icon">
               <i class="bi bi-shop"></i>
             </a>
             <span className="container_btn_lower_text">Shop Now</span>

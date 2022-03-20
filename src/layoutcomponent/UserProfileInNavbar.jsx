@@ -14,7 +14,7 @@ const UserProfileInNavbar = () => {
             setDisplay((prev) => (prev == "none" ? "block" : "none"))
           }
         >
-          <a href="#" class="btn btn-primary btn-icon">
+          <a href="https://www.google.com/" class="btn btn-primary btn-icon">
             <i class="bi bi-person-fill"></i>
           </a>
           <span className="container_btn_lower_text">Hello</span>
