@@ -182,8 +182,8 @@
     display: none;
     width: 100%;
     position: sticky;
-    top: 4.2rem;
-    z-index: 9;
+    top: 4.22rem;
+    z-index: 7;
     background-color: var(--hamburger_navbar_color);
 }
 
