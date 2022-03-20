@@ -1,14 +1,25 @@
 import React from "react";
 import { Logo } from "./Logo";
 import { NavbarSearch } from "./NavbarSearch";
+import { HamburgerSearch } from "./HamburgerSearch";
 import "../styles/Navbar.css";
 import { UserProfileInNavbar } from "./UserProfileInNavbar";
+import { HamburgerNavbar } from "./HamburgerNavbar";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
+  const displayHamburger = () => {
+    setShowHamburgerMenu((prev) => true);
+  };
   return (
-    <div>
-      {" "}
+    <>
+      <HamburgerNavbar
+        showHamburgerMenu={showHamburgerMenu}
+        setShowHamburgerMenu={setShowHamburgerMenu}
+      ></HamburgerNavbar>
       <nav class="apnatheka_navbar">
+        <i class="bi bi-list" onClick={displayHamburger}></i>
         <a class="redirection" href="./index.html">
           <Logo></Logo>
         </a>
@@ -52,7 +63,8 @@ const Navbar = () => {
         </section>
         <UserProfileInNavbar />
       </nav>
-    </div>
+      <HamburgerSearch />
+    </>
   );
 };
 

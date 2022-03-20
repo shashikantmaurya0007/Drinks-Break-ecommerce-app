@@ -26,7 +26,7 @@ const LandingPageCategories = () => {
       </h1>
       <div className={styles.categories_Container}>
         {categories.map(({ categoryName, image }) => (
-          <div className={styles.categories}>
+          <div key={categoryName} className={styles.categories}>
             <img class="img-rounded" src={image} alt="image responsive " />
             <div className={styles.categories_overlay}>
               <h3>{categoryName}</h3>

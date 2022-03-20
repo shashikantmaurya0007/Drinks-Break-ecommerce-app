@@ -19,6 +19,7 @@
     --secondary-button-color: #9d8da5;
     --secondary-hover-color: #56445d;
     --hover-font-color: white;
+    --hamburger_navbar_color: aliceblue;
 }
 
 .logo p::first-letter {

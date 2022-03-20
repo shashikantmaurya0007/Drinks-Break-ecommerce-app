@@ -7,7 +7,7 @@ import { Footer } from "../layoutcomponent/Footer";
 const Home = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar />
       <LandingPageImage />
       <LandingPageCategories />
       <Footer />
