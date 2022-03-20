@@ -11,7 +11,7 @@ const UserProfileInNavbar = () => {
         <div
           className="container_btn"
           onClick={() =>
-            setDisplay((prev) => (prev == "none" ? "block" : "none"))
+            setDisplay((prev) => (prev === "none" ? "block" : "none"))
           }
         >
           <a href="https://www.google.com/" class="btn btn-primary btn-icon">
