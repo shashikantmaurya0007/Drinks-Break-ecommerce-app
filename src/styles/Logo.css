@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Freehand&family=Oswald&family=Poppins:ital,wght@0,300;1,900&family=Yanone+Kaffeesatz:wght@400;500&display=swap");
+.logo {
+    font-family: "Freehand", cursive;
+    font-style: bold;
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    opacity: 0.7;
+    display: flex;
+}
+
+.logo:hover {
+    opacity: 1;
+}
+
+:root {
+    --primary-button-color: #22968c;
+    --primary-hover-color: #277b7c;
+    --secondary-button-color: #9d8da5;
+    --secondary-hover-color: #56445d;
+    --hover-font-color: white;
+    --hamburger_navbar_color: aliceblue;
+}
+
+.logo p::first-letter {
+    color: var(--primary-button-color);
+    font-weight: bolder;
+    font-size: 3rem;
+}
