@@ -6,6 +6,7 @@ import "../styles/Navbar.css";
 import { UserProfileInNavbar } from "./UserProfileInNavbar";
 import { HamburgerNavbar } from "./HamburgerNavbar";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
@@ -20,46 +21,49 @@ const Navbar = () => {
       ></HamburgerNavbar>
       <nav class="apnatheka_navbar">
         <i class="bi bi-list hamburger" onClick={displayHamburger}></i>
-        <a class="redirection" href="./index.html">
-          <Logo></Logo>
-        </a>
+        <Link to={"/"} className={"link_"}>
+          <Logo />
+        </Link>
         <section className="home_shop_nav">
-          <div className="container_btn">
-            <a href="https://www.google.com/" class="btn btn-primary btn-icon">
+          <Link to="/" className="btn btn-primary btn-icon link_">
+            <div className="container_btn">
               <i class="bi bi-house-door-fill"></i>
-            </a>
-            <span className="container_btn_lower_text">Home</span>
-          </div>
-          <div className="container_btn">
-            <a href="https://www.google.com/" class="btn btn-primary btn-icon">
-              <i class="bi bi-shop"></i>
-            </a>
-            <span className="container_btn_lower_text">Shop Now</span>
-          </div>
+
+              <span className="container_btn_lower_text">Home</span>
+            </div>
+          </Link>
+          <Link to={"/products"} className="btn btn-primary btn-icon link_">
+            <div className="container_btn">
+              <i className="bi bi-shop"></i>
+
+              <span className="container_btn_lower_text">Shop Now</span>
+            </div>
+          </Link>
         </section>
         <NavbarSearch></NavbarSearch>
 
-        <section class="navbar_btn_container">
-          <a title="cart" class="redirection" href="./CartManagement/cart.html">
-            <div class="badge">
-              <span class="icon-badge">
-                <i class="bi bi-cart-fill"></i>
-              </span>
-              <span class="badge-up">4</span>
-            </div>
-          </a>
-          <a
-            title="wishlist"
-            class="redirection"
-            href="./WishList/wishlist.html"
+        <section className="navbar_btn_container">
+          <Link
+            to={"/cart"}
+            title="cart"
+            className="redirection"
+            href="./CartManagement/cart.html"
           >
-            <div class="badge">
-              <span class="icon-badge">
+            <div className="badge">
+              <span className="icon-badge">
+                <i className="bi bi-cart-fill"></i>
+              </span>
+              <span className="badge-up">4</span>
+            </div>
+          </Link>
+          <Link title="wishlist" className="redirection" to={"/wishlist"}>
+            <div className="badge">
+              <span className="icon-badge">
                 <i class="bi bi-heart-fill"></i>
               </span>
               <span class="badge-up">5</span>
             </div>
-          </a>
+          </Link>
         </section>
         <UserProfileInNavbar />
       </nav>

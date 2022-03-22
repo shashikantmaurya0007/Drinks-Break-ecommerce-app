@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../styles/LandingPage.module.css";
 const LandingPageImage = () => {
   return (
@@ -6,9 +7,9 @@ const LandingPageImage = () => {
       <div className={styles.inside_banner}>
         <h1>Drinks-Break</h1>
         <h2>20% off</h2>
-        <a href="https://www.google.com/" className={styles.banner_btn}>
+        <Link to={"/products"} className={styles.banner_btn}>
           Grab Your offer Now
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <App />
-    </Router>
+    </Router>{" "}
   </React.StrictMode>,
   document.getElementById("root")
 );

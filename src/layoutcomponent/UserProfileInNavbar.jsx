@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const UserProfileInNavbar = () => {
@@ -14,19 +14,20 @@ const UserProfileInNavbar = () => {
             setDisplay((prev) => (prev === "none" ? "block" : "none"))
           }
         >
-          <a href="https://www.google.com/" class="btn btn-primary btn-icon">
+          <p className="btn btn-primary btn-icon">
             <i class="bi bi-person-fill"></i>
-          </a>
+          </p>
           <span className="container_btn_lower_text">Hello</span>
         </div>
       </section>
       <section className="user_navbar" style={{ display: disp_ }}>
-        {/* <Link path="/">Account</Link> */}
-        {/* <Link path="/">Login</Link> */}
-        <p className="user_navbar_option">Account</p>
+        <Link to={"/sign-up"} className="link_">
+          <p className="user_navbar_option">Account</p>
+        </Link>
         <div className="break"></div>
-        <p className="user_navbar_option">Login</p>
-        {/* <Link>Login</Link> */}
+        <Link to={"/login"} className="link_">
+          <p className="user_navbar_option">Login</p>
+        </Link>
       </section>
     </section>
   );
