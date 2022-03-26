@@ -85,3 +85,43 @@
     left: -1rem;
     z-index: -1;
 }
+
+.filter_mobile_button {
+    position: fixed;
+    top: 20%;
+    right: 10px;
+    color: var(--primary-button-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem;
+    border-radius: 50%;
+    display: none;
+}
+
+.displayFilter {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .filter_container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 40vh;
+        width: 100vw;
+        z-index: 9;
+        padding: 1.5rem 5rem;
+        overflow-y: scroll;
+        background-color: whitesmoke;
+        margin: 0;
+        scroll-behavior: smooth;
+        scrollbar-color: blue;
+        scrollbar-width: 5px;
+        border-radius: 10px 10px 0px 0px;
+    }
+    .filter_mobile_button {
+        display: block;
+    }
+    .productlisting_main_container {
+        justify-content: space-evenly;
+    }
+}

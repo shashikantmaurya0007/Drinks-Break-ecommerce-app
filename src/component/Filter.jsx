@@ -1,7 +1,7 @@
 import React from "react";
 import { useFilter, FILTER_ACTION, filterinitialstate } from "../state/index";
 
-const Filter = () => {
+const Filter = ({ displayMobileFilter }) => {
   const {
     filterDispatch,
     filterstate: { sort_by, rating, price_range, category },
@@ -29,7 +29,11 @@ const Filter = () => {
   };
 
   return (
-    <section className="filter_container">
+    <section
+      className={`filter_container ${
+        !displayMobileFilter ? "displayFilter" : ""
+      }`}
+    >
       <div className="heading_clearall_btn">
         <h1>Filters</h1>
 

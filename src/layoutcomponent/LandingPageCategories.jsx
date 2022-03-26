@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFilter, filterinitialstate, FILTER_ACTION } from "../state/index";
 const LandingPageCategories = () => {
   const navigate = useNavigate();
-  const {
-    filterDispatch,
-    filterstate: { sort_by, rating, price_range, category },
-  } = useFilter();
+  const { filterDispatch } = useFilter();
 
   const categories = [
     {
