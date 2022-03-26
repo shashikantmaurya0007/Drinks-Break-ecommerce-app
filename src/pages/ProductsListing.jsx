@@ -42,7 +42,7 @@ const ProductsListing = () => {
           {displayMobileFilter && (
             <i
               onClick={() => setMobileFilter((prev) => !prev)}
-              class="bi bi-eraser-fill filter_mobile_button"
+              className="bi bi-eraser-fill filter_mobile_button"
             ></i>
           )}
           <Filter displayMobileFilter={displayMobileFilter} />
