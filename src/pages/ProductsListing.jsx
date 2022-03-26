@@ -19,7 +19,7 @@ const ProductsListing = () => {
         setMobileFilter(false);
       }
     });
-    if (window.innerWidth > 100) {
+    if (window.innerWidth > 1000) {
       setMobileFilter(true);
     }
     return () => {
