@@ -6,6 +6,7 @@ import { Navbar, Footer } from "./layoutcomponent/index";
 function App() {
   return (
     <>
+      {console.log("app")}
       <Navbar />
       <DrinksBreakRoutes> </DrinksBreakRoutes>
       <Footer />

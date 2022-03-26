@@ -15,6 +15,7 @@ export const products = [{
         finalPrice: 192,
         category: "beer",
         offer: "New",
+        rating: 2,
     },
     {
         _id: uuid(),
@@ -26,6 +27,7 @@ export const products = [{
         finalPrice: 192,
         category: "beer",
         offer: "Trending",
+        rating: 3,
     },
     {
         _id: uuid(),
@@ -37,6 +39,7 @@ export const products = [{
         finalPrice: 196,
         category: "beer",
         offer: "",
+        rating: 4,
     },
     {
         _id: uuid(),
@@ -48,6 +51,7 @@ export const products = [{
         finalPrice: 159.6,
         category: "beer",
         offer: "",
+        rating: 3.2,
     },
     {
         _id: uuid(),
@@ -59,6 +63,7 @@ export const products = [{
         finalPrice: 176.4,
         category: "beer",
         offer: "",
+        rating: 4,
     },
     {
         _id: uuid(),
@@ -70,6 +75,7 @@ export const products = [{
         finalPrice: 189,
         category: "beer",
         offer: "Trending",
+        rating: 5,
     },
     {
         _id: uuid(),
@@ -81,6 +87,7 @@ export const products = [{
         finalPrice: 189,
         category: "beer",
         offer: "Trending",
+        rating: 3,
     },
     {
         _id: uuid(),
@@ -92,6 +99,7 @@ export const products = [{
         finalPrice: 160,
         category: "beer",
         offer: "",
+        rating: 3.9,
     },
     {
         _id: uuid(),
@@ -103,6 +111,7 @@ export const products = [{
         finalPrice: 160,
         category: "beer",
         offer: "Trending",
+        rating: 4,
     },
     {
         _id: uuid(),
@@ -114,6 +123,7 @@ export const products = [{
         finalPrice: 180.18,
         category: "beer",
         offer: "outOfStock",
+        rating: 5,
     },
     {
         _id: uuid(),
@@ -125,6 +135,7 @@ export const products = [{
         finalPrice: 185,
         category: "beer",
         offer: "",
+        rating: 4,
     },
     {
         _id: uuid(),
@@ -136,6 +147,7 @@ export const products = [{
         finalPrice: 726,
         category: "wine",
         offer: "New",
+        rating: 4,
     },
     {
         _id: uuid(),
@@ -147,6 +159,7 @@ export const products = [{
         finalPrice: 713,
         category: "wine",
         offer: "",
+        rating: 2,
     },
     {
         _id: uuid(),
@@ -158,5 +171,6 @@ export const products = [{
         finalPrice: 658,
         category: "wine",
         offer: "outOfStock",
+        rating: 4.3,
     },
 ];
