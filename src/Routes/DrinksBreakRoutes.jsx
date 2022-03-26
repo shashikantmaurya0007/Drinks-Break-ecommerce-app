@@ -1,3 +1,4 @@
+import MockmanEs from "mockman-js";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import {
@@ -18,6 +19,7 @@ const DrinksBreakRoutes = () => {
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/mockman" element={<MockmanEs />} />
       </Routes>
     </div>
   );

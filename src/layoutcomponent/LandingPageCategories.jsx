@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "../styles/LandingPage.module.css";
 import { useNavigate } from "react-router-dom";
+import { useFilter, filterinitialstate, FILTER_ACTION } from "../state/index";
 const LandingPageCategories = () => {
   const navigate = useNavigate();
+  const { filterDispatch } = useFilter();
+
   const categories = [
     {
       categoryName: "Beer",
@@ -22,6 +25,20 @@ const LandingPageCategories = () => {
     },
   ];
   const navigateToCategoryProduct = (categoryName) => {
+    console.log(filterinitialstate);
+    filterDispatch({
+      type: FILTER_ACTION.RESET_FILTER,
+      payload: { ...filterinitialstate },
+    });
+
+    filterDispatch({
+      type: FILTER_ACTION.SORT_BY_CATEGORY,
+      payload: {
+        ...filterinitialstate,
+        category: [categoryName.toLowerCase()],
+      },
+    });
+
     navigate("/products");
   };
   return (
