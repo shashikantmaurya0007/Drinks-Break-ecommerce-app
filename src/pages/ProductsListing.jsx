@@ -19,6 +19,9 @@ const ProductsListing = () => {
         setMobileFilter(false);
       }
     });
+    if (window.innerWidth > 100) {
+      setMobileFilter(true);
+    }
     return () => {
       window.removeEventListener("resize");
     };
