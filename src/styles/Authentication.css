@@ -1,0 +1,50 @@
+.signup-container {
+    min-height: 62vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-box {
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+}
+
+.signup-box .signup-header {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    opacity: 0.7;
+}
+
+.signup-box .signup-header::first-letter {
+    color: var(--primary-button-color);
+}
+
+.checkbox+div p.btn.btn-primary {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0rem;
+}
+
+.checkbox+div p.btn.btn-primary:hover {
+    transition: all 0.5s ease-in-out;
+}
+
+.check_ {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.login_btn {
+    width: 90%;
+}
