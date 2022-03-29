@@ -7,8 +7,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <DrinksBreakRoutes> </DrinksBreakRoutes>
-      <Footer />
+      <DrinksBreakRoutes> </DrinksBreakRoutes> <Footer />
     </>
   );
 }

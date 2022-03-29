@@ -48,3 +48,10 @@
 .login_btn {
     width: 90%;
 }
+
+.form_error {
+    color: red;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
