@@ -9,7 +9,7 @@ const UserProfileInNavbar = () => {
   const {
     user: { firstName },
   } = useUser();
-  console.log(firstName);
+
   return (
     <section>
       <section>

@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../state/util/index";
@@ -87,7 +86,6 @@ const Signup = () => {
       });
     }
 
-    console.log(validationMessage.password, "validateionsfsfsfs");
     if (
       !validationMessage.firstName &&
       !validationMessage.lastName &&
