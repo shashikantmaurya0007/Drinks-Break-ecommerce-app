@@ -29,7 +29,7 @@ const getTokenandUserDetails = async (setUser) => {
     };
   });
   localStorage.setItem("token", encodedToken);
-  //   localStorage.setItem("encodedToken", encodedToken);
+  //   localStorage.setItem("encodedToken", encodedTok  en);
 };
 
 const UserProvider = ({ children }) => {
