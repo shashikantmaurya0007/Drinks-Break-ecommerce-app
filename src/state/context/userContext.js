@@ -1,14 +1,14 @@
 import axios from "axios";
-import { useContext, createContext, useEffect } from "react";
+import { useContext, createContext, useEffect, useState } from "react";
 
-const user = {
+const user1 = {
   firstName: "",
   lastName: "",
   encodedToken: "",
 };
-const usercontext = createContext(user);
+const usercontext = createContext(user1);
 const useUser = () => useContext(usercontext);
-const getTokenandUserDetails = async () => {
+const getTokenandUserDetails = async (setUser) => {
   const {
     data: {
       foundUser: { firstName, lastName },
@@ -20,17 +20,27 @@ const getTokenandUserDetails = async () => {
   });
   //
 
-  user.firstName = firstName;
-  user.lastName = lastName;
-  user.encodedToken = encodedToken;
+  setUser((prev) => {
+    return {
+      ...prev,
+      firstName: firstName,
+      lastName,
+      encodedToken: encodedToken,
+    };
+  });
   localStorage.setItem("token", encodedToken);
-  //   localStorage.setItem("encodedToken", encodedToken);
+  //   localStorage.setItem("encodedToken", encodedTok  en);
 };
 
 const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    encodedToken: "",
+  });
   useEffect(() => {
     (async () => {
-      await getTokenandUserDetails();
+      await getTokenandUserDetails(setUser);
     })();
   }, []);
 
