@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useUser } from "../state";
 
 const UserProfileInNavbar = () => {
   const [disp_, setDisplay] = useState("none");
+
+  const {
+    user: { firstName },
+  } = useUser();
 
   return (
     <section>
@@ -17,7 +22,7 @@ const UserProfileInNavbar = () => {
           <p className="btn btn-primary btn-icon">
             <i class="bi bi-person-fill"></i>
           </p>
-          <span className="container_btn_lower_text">Hello</span>
+          <span className="container_btn_lower_text">Hi {firstName}</span>
         </div>
       </section>
       <section className="user_navbar" style={{ display: disp_ }}>

@@ -5,7 +5,7 @@ import "./reset.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import { makeServer } from "./server";
-import { ProductProvider, FilterProvider } from "./state/index";
+import { ProductProvider, FilterProvider, UserProvider } from "./state/index";
 
 // Call make Server
 makeServer();
@@ -15,7 +15,9 @@ ReactDOM.render(
     <Router>
       <ProductProvider>
         <FilterProvider>
-          <App />
+          <UserProvider>
+            <App />
+          </UserProvider>
         </FilterProvider>
       </ProductProvider>
     </Router>

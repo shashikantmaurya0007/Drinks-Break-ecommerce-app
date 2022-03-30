@@ -11,4 +11,11 @@ const filterinitialstate = {
     price_range: 1500,
 };
 
-export { productinitalstate, filterinitialstate };
+const cartinitialstate = {
+    loading: false,
+    cartProducts: [],
+
+    error: "",
+};
+
+export { productinitalstate, filterinitialstate, cartinitialstate };
