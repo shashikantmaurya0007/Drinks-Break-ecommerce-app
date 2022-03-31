@@ -3,7 +3,6 @@ import React from "react";
 import { useCart, removeItemFromCart, changeTheQuantity } from "../state/index";
 
 const CartCard = ({ product }) => {
-  console.log(removeItemFromCart, "sfsfsfsfsfsdf");
   const { cartDispatch } = useCart();
   const {
     _id: id,

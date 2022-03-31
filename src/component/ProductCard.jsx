@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
     cartDispatch,
     cartState: { cartProducts },
   } = useCart();
-  console.log(cartProducts);
+
   return (
     <div
       className={`card card_overlay shopping_card card_shadow vertical ${
@@ -57,7 +57,6 @@ const ProductCard = ({ product }) => {
           <span className="product_rating">{rating}⭐</span>
         </p>
         <div className="btn-container">
-          {console.log(isAlreadyExistInCart(cartProducts, id))}
           {isAlreadyExistInCart(cartProducts, id) ? (
             <p
               onClick={() => navigate("/cart")}

@@ -14,7 +14,7 @@ const FilteredProducts = () => {
     <>
       <section className="productslist_container">
         {filteredProducts.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </section>
     </>

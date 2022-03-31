@@ -1,5 +1,4 @@
 const calculatePriceDetails = (products, setPriceDetails) => {
-    console.log(products);
     const priceDetails = products.reduce(
         (acc, curr) => {
             return {

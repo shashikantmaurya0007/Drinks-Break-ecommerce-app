@@ -11,7 +11,6 @@ const ProductsListing = () => {
   const [displayMobileFilter, setMobileFilter] = useState(false);
 
   useEffect(() => {
-    console.log(window.innerWidth, "width");
     window.addEventListener("resize", () => {
       if (window.innerWidth > 1000) {
         setMobileFilter(true);

@@ -3,7 +3,6 @@ const cartReducer = (prevstatae, { type, payload }) => {
     switch (type) {
         case CART_ACTION.ADD_TO_CART:
             {
-                console.log(payload);
                 return {
                     ...prevstatae,
                     cartProducts: [...payload],

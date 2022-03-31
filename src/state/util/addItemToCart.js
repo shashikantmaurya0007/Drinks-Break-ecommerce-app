@@ -14,7 +14,6 @@ const addItemToCart = async(cartDispatch, product) => {
                 },
             }
         );
-        console.log(cart, "cart");
 
         cartDispatch({ type: CART_ACTION.ADD_TO_CART, payload: cart });
     } catch {
