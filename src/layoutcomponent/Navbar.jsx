@@ -7,12 +7,16 @@ import { UserProfileInNavbar } from "./UserProfileInNavbar";
 import { HamburgerNavbar } from "./HamburgerNavbar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../state";
 
 const Navbar = () => {
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
   const displayHamburger = () => {
     setShowHamburgerMenu((prev) => true);
   };
+  const {
+    cartState: { cartProducts },
+  } = useCart();
   return (
     <>
       <HamburgerNavbar
@@ -53,7 +57,7 @@ const Navbar = () => {
               <span className="icon-badge">
                 <i className="bi bi-cart-fill"></i>
               </span>
-              <span className="badge-up">4</span>
+              <span className="badge-up">{cartProducts.length}</span>
             </div>
           </Link>
           <Link title="wishlist" className="redirection" to={"/wishlist"}>

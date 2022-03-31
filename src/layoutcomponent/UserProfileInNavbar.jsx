@@ -7,7 +7,7 @@ const UserProfileInNavbar = () => {
   const [disp_, setDisplay] = useState("none");
 
   const {
-    user: { firstName },
+    user: { firstName, encodedToken },
   } = useUser();
 
   return (
