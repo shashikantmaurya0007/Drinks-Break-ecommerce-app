@@ -6,7 +6,7 @@ import "../styles/Cart.css";
 
 const Cart = () => {
   const {
-    cartState: { loading, error, cartProducts },
+    cartState: { cartProducts },
   } = useCart();
 
   const [priceDetails, setPriceDetails] = useState({

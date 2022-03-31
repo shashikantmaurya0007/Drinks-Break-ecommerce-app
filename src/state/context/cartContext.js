@@ -15,7 +15,7 @@ const getCartItemsInitially = async (cartDispatch) => {
     } = await axios.get("/api/user/cart", {
       headers: { authorization: localStorage.getItem("token") },
     });
-
+    cartDispatch({ type: CART_ACTION.ADD_TO_CART, payload: [...cart] });
     cartDispatch({ type: CART_ACTION.LOADING, payload: false });
   } catch {
     cartDispatch({ type: CART_ACTION.ERROR, payload: "error occured" });
@@ -30,7 +30,7 @@ const CartProvider = ({ children }) => {
   return (
     <cartcontext.Provider value={{ cartState, cartDispatch }}>
       {" "}
-      {children}
+      {children}{" "}
     </cartcontext.Provider>
   );
 };

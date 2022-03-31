@@ -11,10 +11,10 @@ const CartCard = ({ product }) => {
     img,
     discountPercent,
     finalPrice,
-    category,
+
     title,
     rating = 3.5,
-    offer,
+
     qty,
   } = product;
   return (
