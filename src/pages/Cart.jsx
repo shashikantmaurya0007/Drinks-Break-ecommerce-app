@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { CartCard } from "../component/CartCard";
-import { useCart } from "../state/index";
+import { useCart, calculatePriceDetails } from "../state/index";
 import "../styles/Cart.css";
 
 const Cart = () => {
@@ -8,6 +9,18 @@ const Cart = () => {
     cartState: { loading, error, cartProducts },
   } = useCart();
 
+  const [priceDetails, setPriceDetails] = useState({
+    totalCostPrice: 0,
+    totalQty: 0,
+    totalDiscount: 0,
+    totalAmountToPay: 0,
+  });
+  useEffect(() => {
+    calculatePriceDetails(cartProducts, setPriceDetails);
+  }, [cartProducts]);
+
+  const { totalCostPrice, totalQty, totalDiscount, totalAmountToPay } =
+    priceDetails;
   return (
     <>
       {cartProducts.length > 0 && (
@@ -33,12 +46,12 @@ const Cart = () => {
 
               <div class="seperate_sections"></div>
               <div class="details price_item_qty">
-                <h2>Price(4 items)</h2>
-                <h3>₹4000</h3>
+                <h2>Price({totalQty} items)</h2>
+                <h3>₹{totalCostPrice}</h3>
               </div>
               <div class="details discount_items">
                 <h2>Discount</h2>
-                <h3>-₹1600</h3>
+                <h3>-₹{totalDiscount}</h3>
               </div>
               <div class="details delivery_charges">
                 <h2>Delivery-Charges</h2>
@@ -46,8 +59,8 @@ const Cart = () => {
               </div>
               <div class="seperate_sections"></div>
               <div class="details total_amount">
-                <h2>Total-Amount</h2>
-                <h3>₹2400</h3>
+                <h2>Total Amount to Pay</h2>
+                <h3>₹{totalAmountToPay}</h3>
               </div>
               <div class="seperate_sections"></div>
               <a href="#" class="btn btn-primary btn-solid">
@@ -57,6 +70,7 @@ const Cart = () => {
           </section>
         </main>
       )}
+
       {!cartProducts.length && (
         <h1
           style={{

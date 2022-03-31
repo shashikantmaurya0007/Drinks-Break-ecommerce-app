@@ -9,7 +9,7 @@ import { isAlreadyExistInCart } from "./util/isAlreadyExistInCart";
 import { removeItemFromCart } from "./util/removeItemFromCart.js";
 import { CART_ACTION } from "./action";
 import { changeTheQuantity } from "./util/changeTheQuantity";
-
+import { calculatePriceDetails } from "./util/calculatePriceDetails";
 export {
     productinitalstate,
     ProductProvider,
@@ -27,4 +27,5 @@ export {
     CART_ACTION,
     removeItemFromCart,
     changeTheQuantity,
+    calculatePriceDetails,
 };
