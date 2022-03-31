@@ -63,9 +63,7 @@ const Cart = () => {
                 <h3>₹{totalAmountToPay}</h3>
               </div>
               <div class="seperate_sections"></div>
-              <a href="#" class="btn btn-primary btn-solid">
-                Checkout
-              </a>
+              <p class="btn btn-primary btn-solid">Checkout</p>
             </div>
           </section>
         </main>
