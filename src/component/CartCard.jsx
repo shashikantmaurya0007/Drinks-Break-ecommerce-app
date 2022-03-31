@@ -1,6 +1,10 @@
 import React from "react";
 
+import { useCart, removeItemFromCart, changeTheQuantity } from "../state/index";
+
 const CartCard = ({ product }) => {
+  console.log(removeItemFromCart, "sfsfsfsfsfsdf");
+  const { cartDispatch } = useCart();
   const {
     _id: id,
     brand,
@@ -31,20 +35,33 @@ const CartCard = ({ product }) => {
           <span className="product_rating">{rating}⭐</span>
         </p>
         <div className="cart_product_quantity">
-          <a href="#" className="btn btn-float">
+          <p
+            onClick={() => changeTheQuantity(cartDispatch, id, "increment")}
+            className="btn btn-float"
+          >
             <span>
               <i className="bi bi-plus"></i>
             </span>
-          </a>
+          </p>
           <h1>{qty}</h1>
-          <a href="#" className="btn btn-float">
+          <p
+            onClick={() =>
+              qty > 1 && changeTheQuantity(cartDispatch, id, "decrement")
+            }
+            className="btn btn-float"
+          >
             <span>
               <i className="bi bi-dash"></i>
             </span>
-          </a>
+          </p>
         </div>
         <div className="btn-container">
-          <p className="btn btn-primary btn-solid card_btn">Remove From Cart</p>
+          <p
+            onClick={() => removeItemFromCart(id, cartDispatch)}
+            className="btn btn-primary btn-solid card_btn"
+          >
+            Remove From Cart
+          </p>
           <p className="btn btn-primary btn-outline card_btn">
             Add to WishList
           </p>
