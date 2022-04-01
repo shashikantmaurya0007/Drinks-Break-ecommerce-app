@@ -1,17 +1,27 @@
 import React from "react";
+import { useCart, addItemToCart, isAlreadyExistInCart } from "../state/index";
 import "../styles/ProductListing.css";
-const ProductCard = ({
-  _id: id,
-  brand,
-  price,
-  img,
-  discountPercent,
-  finalPrice,
-  category,
-  title,
-  rating = 3.5,
-  offer,
-}) => {
+import { useNavigate } from "react-router-dom";
+
+const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+  const {
+    _id: id,
+    brand,
+    price,
+    img,
+    discountPercent,
+    finalPrice,
+    category,
+    title,
+    rating = 3.5,
+    offer,
+  } = product;
+  const {
+    cartDispatch,
+    cartState: { cartProducts },
+  } = useCart();
+
   return (
     <div
       className={`card card_overlay shopping_card card_shadow vertical ${
@@ -47,9 +57,22 @@ const ProductCard = ({
           <span className="product_rating">{rating}⭐</span>
         </p>
         <div className="btn-container">
-          <p className="card_btn btn btn-primary btn-solid">
-            Add To Cart<i class="bi bi-cart-fill"></i>
-          </p>
+          {isAlreadyExistInCart(cartProducts, id) ? (
+            <p
+              onClick={() => navigate("/cart")}
+              className="card_btn btn btn-primary btn-solid"
+            >
+              Go To Cart <i class="bi bi-cart-fill"></i>
+            </p>
+          ) : (
+            <p
+              onClick={() => addItemToCart(cartDispatch, product)}
+              className="card_btn btn btn-primary btn-solid"
+            >
+              Add To Cart<i class="bi bi-cart-fill"></i>
+            </p>
+          )}
+
           <p className="card_btn btn btn-primary btn-outline">
             Add to WishList<i class="bi bi-heart-half"></i>
           </p>
