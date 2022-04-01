@@ -17,5 +17,16 @@ const cartinitialstate = {
 
     error: "",
 };
+const wishlistinitialstate = {
+    loading: false,
+    wishlistproducts: [],
 
-export { productinitalstate, filterinitialstate, cartinitialstate };
+    error: "",
+};
+
+export {
+    productinitalstate,
+    filterinitialstate,
+    cartinitialstate,
+    wishlistinitialstate,
+};

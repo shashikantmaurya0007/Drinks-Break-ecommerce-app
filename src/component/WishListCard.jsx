@@ -4,12 +4,12 @@ import {
   addItemToCart,
   isAlreadyExistInCart,
   useWishList,
-  addToWishList,
+  removeFromWishList,
 } from "../state/index";
 import "../styles/ProductListing.css";
 import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ product }) => {
+const WishListCard = ({ product }) => {
   const navigate = useNavigate();
   const {
     _id: id,
@@ -20,8 +20,8 @@ const ProductCard = ({ product }) => {
     finalPrice,
     category,
     title,
+
     rating = 3.5,
-    offer,
   } = product;
   const {
     cartDispatch,
@@ -31,16 +31,15 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className={`card card_overlay shopping_card card_shadow vertical ${
-        offer && "offer"
-      }`}
+      className={`card card_overlay shopping_card card_shadow vertical ${"offer"}`}
     >
-      {offer && <p className="card_text_badge">{offer}</p>}
-      {offer === "outOfStock" && (
-        <div className="card-overlay-text">
-          <span>Out of Stock</span>
-        </div>
-      )}
+      {
+        <p className="card_text_badge">
+          <i class="bi bi-emoji-heart-eyes"></i>
+          <i class="bi bi-emoji-kiss-fill"></i>
+        </p>
+      }
+
       <div className="img-container">
         <img className="product_image" src={img} alt={category} />
       </div>
@@ -81,10 +80,10 @@ const ProductCard = ({ product }) => {
           )}
 
           <p
-            onClick={() => addToWishList(product, wishlistDispatch)}
+            onClick={() => removeFromWishList(id, wishlistDispatch)}
             className="card_btn btn btn-primary btn-outline"
           >
-            Add to WishList<i class="bi bi-heart-half"></i>
+            Remove <i class="bi bi-heart-half"></i>
           </p>
         </div>
       </div>
@@ -92,4 +91,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export { ProductCard };
+export { WishListCard };

@@ -26,14 +26,7 @@ const Cart = () => {
       {cartProducts.length > 0 && (
         <main class="cart_management_container">
           <section class="cart_products">
-            <h1
-              style={{
-                fontWeight: "800",
-                paddingTop: "1rem",
-                letterSpacing: "2px",
-                opacity: 0.6,
-              }}
-            >
+            <h1 className="cart_wishlist_header">
               Total Products {cartProducts.length}
             </h1>
             {cartProducts.map((product) => (
@@ -70,15 +63,7 @@ const Cart = () => {
       )}
 
       {!cartProducts.length && (
-        <h1
-          style={{
-            fontWeight: "800",
-            paddingTop: "1rem",
-            letterSpacing: "2px",
-            opacity: 0.6,
-            textAlign: "center",
-          }}
-        >
+        <h1 className="cart_wishlist_header">
           You have not yet added any item to cart! :)
         </h1>
       )}

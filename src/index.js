@@ -10,6 +10,7 @@ import {
   FilterProvider,
   UserProvider,
   CartProvider,
+  WishListProvider,
 } from "./state/index";
 
 // Call make Server
@@ -21,13 +22,15 @@ ReactDOM.render(
       <ProductProvider>
         <FilterProvider>
           <UserProvider>
-            <CartProvider>
-              <App />
-            </CartProvider>
-          </UserProvider>
-        </FilterProvider>
-      </ProductProvider>
-    </Router>
+            <WishListProvider>
+              <CartProvider>
+                <App />
+              </CartProvider>{" "}
+            </WishListProvider>{" "}
+          </UserProvider>{" "}
+        </FilterProvider>{" "}
+      </ProductProvider>{" "}
+    </Router>{" "}
   </React.StrictMode>,
   document.getElementById("root")
 );
