@@ -118,6 +118,23 @@
     padding-left: 1rem;
 }
 
+.wishList_container {
+    min-height: 70vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 2rem;
+}
+
+.cart_wishlist_header {
+    font-weight: 800;
+    padding-top: 1rem;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    text-align: center;
+}
+
 @media screen and (max-width: 600px) {
     .cart_management_container {
         flex-direction: column;

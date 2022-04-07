@@ -1,6 +1,7 @@
 import MockmanEs from "mockman-js";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { Error } from "../component/Error";
 import {
   LandingPage,
   Cart,
@@ -20,6 +21,7 @@ const DrinksBreakRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/mockman" element={<MockmanEs />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

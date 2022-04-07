@@ -7,7 +7,7 @@ import { UserProfileInNavbar } from "./UserProfileInNavbar";
 import { HamburgerNavbar } from "./HamburgerNavbar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../state";
+import { useCart, useWishList } from "../state/index";
 
 const Navbar = () => {
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
@@ -17,6 +17,9 @@ const Navbar = () => {
   const {
     cartState: { cartProducts },
   } = useCart();
+  const {
+    wishliststate: { wishlistproducts },
+  } = useWishList();
   return (
     <>
       <HamburgerNavbar
@@ -65,7 +68,7 @@ const Navbar = () => {
               <span className="icon-badge">
                 <i class="bi bi-heart-fill"></i>
               </span>
-              <span class="badge-up">5</span>
+              <span class="badge-up">{wishlistproducts.length}</span>
             </div>
           </Link>
         </section>
