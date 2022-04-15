@@ -17,6 +17,8 @@ import { calculatePriceDetails } from "./util/calculatePriceDetails";
 import { WishListProvider, useWishList } from "./context/wishListContext";
 import { addToWishList } from "./util/addToWishList";
 import { removeFromWishList } from "./util/removeFromWishList";
+import { validateSignUp } from "./util/validateSignUp";
+
 export {
     productinitalstate,
     ProductProvider,
@@ -42,4 +44,5 @@ export {
     useWishList,
     addToWishList,
     removeFromWishList,
+    validateSignUp,
 };
