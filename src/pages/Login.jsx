@@ -1,15 +1,43 @@
 import React, { useState } from "react";
 import { useStateCallback } from "use-state-callback";
 import "../styles/Authentication.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { validateLoginUser, loginUser } from "../state/index";
+import { toast } from "react-toastify";
+
 const Login = () => {
   const [password, setPassword] = useStateCallback("");
   const [email, setEmail] = useStateCallback("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useStateCallback("");
   const [showPassword, setShowPassword] = useState(false);
-  const naviagate = useNavigate();
-  const loginUser = () => {};
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location, "hello");
+
+  const loginAndValidateUser = async () => {
+    const validate = validateLoginUser(email, emailError, passwordError);
+    if (!validate) {
+      toast.error("Please fill all the details");
+      return;
+    }
+
+    const res = await loginUser(email, password);
+    const { status, foundUser, encodedToken } = res;
+    console.log(foundUser);
+    if (status === 201) {
+      toast.error("wrong password");
+      return;
+    }
+    if (status === 404) {
+      toast.error("wrong email and password");
+      return;
+    }
+    toast.success(`${foundUser.firstName} wish you happy shopping`);
+    // const loginDetails = { is };
+
+    navigate("/", { replace: true });
+  };
 
   return (
     <main className="signup-container">
@@ -74,12 +102,15 @@ const Login = () => {
           <p className="btn btn-primary btn-link">Forgot Password?</p>
         </div>
         <div className="login_btn">
-          <p className="btn btn-primary btn-solid" onClick={loginUser}>
+          <p
+            className="btn btn-primary btn-solid"
+            onClick={loginAndValidateUser}
+          >
             Login
           </p>
         </div>
         <p
-          onClick={() => naviagate("/sign-up")}
+          onClick={() => navigate("/sign-up")}
           className="btn btn-primary btn-link"
         >
           Create a new Account

@@ -18,6 +18,8 @@ import { WishListProvider, useWishList } from "./context/wishListContext";
 import { addToWishList } from "./util/addToWishList";
 import { removeFromWishList } from "./util/removeFromWishList";
 import { validateSignUp } from "./util/validateSignUp";
+import { validateLoginUser } from "./util/validateLoginUser";
+import { loginUser } from "./util/loginUser";
 
 export {
     productinitalstate,
@@ -45,4 +47,6 @@ export {
     addToWishList,
     removeFromWishList,
     validateSignUp,
+    validateLoginUser,
+    loginUser,
 };

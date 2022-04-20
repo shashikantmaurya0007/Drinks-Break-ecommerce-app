@@ -18,6 +18,7 @@ const getTokenandUserDetails = async (setUser) => {
     email: "adarshbalika@gmail.com",
     password: "adarshbalika",
   });
+  
   //
 
   setUser((prev) => {

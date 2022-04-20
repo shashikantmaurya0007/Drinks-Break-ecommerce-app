@@ -24,9 +24,16 @@ const wishlistinitialstate = {
     error: "",
 };
 
+const user_auth_initialstate = {
+    isLoggedIn: false,
+    firstName: "",
+    encodedToken: "",
+};
+
 export {
     productinitalstate,
     filterinitialstate,
     cartinitialstate,
     wishlistinitialstate,
+    user_auth_initialstate,
 };
