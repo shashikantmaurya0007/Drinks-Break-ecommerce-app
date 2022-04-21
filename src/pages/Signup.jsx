@@ -25,13 +25,17 @@ const Signup = () => {
   const signUpFormSubmission = async () => {
     const validate = validateSignUp(
       firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
       firstNameError,
       lastNameError,
       emailError,
       passwordError,
       confirmPasswordError
     );
-
+    console.log(validate);
     if (!validate) {
       toast.error("Please fill all the details");
       return;

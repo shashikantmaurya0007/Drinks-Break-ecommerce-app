@@ -20,6 +20,7 @@ import { removeFromWishList } from "./util/removeFromWishList";
 import { validateSignUp } from "./util/validateSignUp";
 import { validateLoginUser } from "./util/validateLoginUser";
 import { loginUser } from "./util/loginUser";
+import { userAuthReducer } from "./reducers/userAuthReducer";
 
 export {
     productinitalstate,
@@ -49,4 +50,5 @@ export {
     validateSignUp,
     validateLoginUser,
     loginUser,
+    userAuthReducer,
 };

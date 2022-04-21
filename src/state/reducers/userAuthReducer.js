@@ -22,3 +22,5 @@ const userAuthReducer = (prevstate, { type, payload }) => {
             }
     }
 };
+
+export { userAuthReducer };

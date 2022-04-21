@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useStateCallback } from "use-state-callback";
 import "../styles/Authentication.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { validateLoginUser, loginUser } from "../state/index";
+import { validateLoginUser, loginUser, useUser } from "../state/index";
 import { toast } from "react-toastify";
+import { USER_AUTH_ACTION } from "../state/action";
 
 const Login = () => {
   const [password, setPassword] = useStateCallback("");
@@ -14,6 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location, "hello");
+  const { user, userDispatch } = useUser();
 
   const loginAndValidateUser = async () => {
     const validate = validateLoginUser(email, emailError, passwordError);
@@ -34,7 +36,18 @@ const Login = () => {
       return;
     }
     toast.success(`${foundUser.firstName} wish you happy shopping`);
-    // const loginDetails = { is };
+    const loginDetails = {
+      isLoggedIn: true,
+      firstName: foundUser.firstName,
+      encodedToken: encodedToken,
+    };
+
+    localStorage.setItem("loginDetails", JSON.stringify(loginDetails));
+
+    userDispatch({
+      type: USER_AUTH_ACTION.LOGIN_SUCCESSFULL,
+      payload: { ...loginDetails },
+    });
 
     navigate("/", { replace: true });
   };

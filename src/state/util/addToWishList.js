@@ -1,12 +1,12 @@
 import axios from "axios";
 import { WISHLIST_ACTION } from "../index";
-const addToWishList = async(product, wishlistDispatch) => {
+const addToWishList = async(product, wishlistDispatch, token) => {
     const {
         data: { wishlist },
     } = await axios.post(
         "/api/user/wishlist", { product }, {
             headers: {
-                authorization: localStorage.getItem("token"),
+                authorization: token,
             },
         }
     );

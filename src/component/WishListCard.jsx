@@ -5,6 +5,7 @@ import {
   isAlreadyExistInCart,
   useWishList,
   removeFromWishList,
+  useUser,
 } from "../state/index";
 import "../styles/ProductListing.css";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +28,10 @@ const WishListCard = ({ product }) => {
     cartDispatch,
     cartState: { cartProducts },
   } = useCart();
+  const {
+    user: { encodedToken },
+  } = useUser();
+  console.log(encodedToken);
   const { wishlistDispatch } = useWishList();
 
   return (
@@ -72,7 +77,7 @@ const WishListCard = ({ product }) => {
             </p>
           ) : (
             <p
-              onClick={() => addItemToCart(cartDispatch, product)}
+              onClick={() => addItemToCart(cartDispatch, product, encodedToken)}
               className="card_btn btn btn-primary btn-solid"
             >
               Add To Cart<i class="bi bi-cart-fill"></i>
@@ -80,7 +85,9 @@ const WishListCard = ({ product }) => {
           )}
 
           <p
-            onClick={() => removeFromWishList(id, wishlistDispatch)}
+            onClick={() =>
+              removeFromWishList(id, wishlistDispatch, encodedToken)
+            }
             className="card_btn btn btn-primary btn-outline"
           >
             Remove <i class="bi bi-heart-half"></i>

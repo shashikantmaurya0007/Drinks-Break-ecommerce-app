@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CART_ACTION } from "../action";
 
-const addItemToCart = async(cartDispatch, product) => {
+const addItemToCart = async(cartDispatch, product, token) => {
     try {
         const {
             data: { cart },
@@ -10,7 +10,7 @@ const addItemToCart = async(cartDispatch, product) => {
                 product,
             }, {
                 headers: {
-                    authorization: localStorage.getItem("token"),
+                    authorization: token,
                 },
             }
         );
