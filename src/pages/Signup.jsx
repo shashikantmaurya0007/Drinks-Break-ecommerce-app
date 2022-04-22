@@ -35,7 +35,7 @@ const Signup = () => {
       passwordError,
       confirmPasswordError
     );
-    console.log(validate);
+
     if (!validate) {
       toast.error("Please fill all the details");
       return;
@@ -46,7 +46,6 @@ const Signup = () => {
     }
 
     const status = await registerUser({ email, password, firstName, lastName });
-    console.log(status, "status");
 
     if (status === 201) toast.success("successfully signup");
     else {
@@ -84,7 +83,6 @@ const Signup = () => {
             value={lastName}
             onChange={(e) => {
               setLastName(e.target.value, (lastName) => {
-                console.log(lastName, "lastname");
                 lastName.trim().length
                   ? setLastNameError("")
                   : setLastNameError("*Last Name can not be empty*");
@@ -119,7 +117,6 @@ const Signup = () => {
             value={password}
             onChange={(e) =>
               setPassword(e.target.value, (password) => {
-                console.log(password, "password");
                 password.trim().length >= 4
                   ? setPasswordError("")
                   : setPasswordError(
@@ -150,7 +147,6 @@ const Signup = () => {
             placeholder="Do not share your password                                                    "
             onChange={(e) =>
               setConfirmPassword(e.target.value, (password) => {
-                console.log(password, "password");
                 password.trim().length >= 4
                   ? setConfirmPasswordError("")
                   : setConfirmPasswordError(
@@ -190,7 +186,7 @@ const Signup = () => {
             Sign-up
           </p>
         </div>
-        {console.log("render times")}
+
         <p
           className="btn btn-primary btn-link"
           onClick={() => navigate("/login")}

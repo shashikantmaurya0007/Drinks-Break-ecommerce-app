@@ -5,9 +5,9 @@ const RequireAuth = () => {
   const {
     user: { isLoggedIn },
   } = useUser();
-  console.log(isLoggedIn, "isLoggedIn");
 
   const { pathname } = useLocation();
+
   if (isLoggedIn) {
     return <Outlet />;
   }

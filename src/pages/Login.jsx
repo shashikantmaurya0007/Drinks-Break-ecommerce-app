@@ -13,9 +13,15 @@ const Login = () => {
   const [passwordError, setPasswordError] = useStateCallback("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  console.log(location, "hello");
-  const { user, userDispatch } = useUser();
+  const { state } = useLocation();
+
+  const redirect = state?.from || "/";
+
+  const {
+    user: { isLoggedIn },
+    userDispatch,
+  } = useUser();
+  isLoggedIn && navigate(redirect, { replace: true });
 
   const loginAndValidateUser = async () => {
     const validate = validateLoginUser(email, emailError, passwordError);
@@ -26,7 +32,7 @@ const Login = () => {
 
     const res = await loginUser(email, password);
     const { status, foundUser, encodedToken } = res;
-    console.log(foundUser);
+
     if (status === 201) {
       toast.error("wrong password");
       return;
@@ -49,7 +55,7 @@ const Login = () => {
       payload: { ...loginDetails },
     });
 
-    navigate("/", { replace: true });
+    navigate(redirect, { replace: true });
   };
 
   return (
