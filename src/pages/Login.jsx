@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStateCallback } from "use-state-callback";
 import "../styles/Authentication.css";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -21,7 +21,6 @@ const Login = () => {
     user: { isLoggedIn },
     userDispatch,
   } = useUser();
-  isLoggedIn && navigate(redirect, { replace: true });
 
   const loginAndValidateUser = async () => {
     const validate = validateLoginUser(email, emailError, passwordError);
@@ -57,7 +56,10 @@ const Login = () => {
 
     navigate(redirect, { replace: true });
   };
-
+  useEffect(
+    () => isLoggedIn && navigate(redirect, { replace: true }),
+    [isLoggedIn]
+  );
   return (
     <main className="signup-container">
       <section className="signup-box">

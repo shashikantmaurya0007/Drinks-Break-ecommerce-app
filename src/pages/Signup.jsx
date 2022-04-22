@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStateCallback } from "use-state-callback";
 import { useNavigate } from "react-router-dom";
-import { validateSignUp } from "../state/index.js";
+import { useUser, validateSignUp } from "../state/index.js";
 import { toast } from "react-toastify";
 import { registerUser } from "../state/util/registerUser.js";
 
@@ -21,6 +21,9 @@ const Signup = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const {
+    user: { isLoggedIn },
+  } = useUser();
 
   const signUpFormSubmission = async () => {
     const validate = validateSignUp(
@@ -54,6 +57,9 @@ const Signup = () => {
     }
     navigate("/login");
   };
+  useEffect(() => {
+    isLoggedIn && navigate("/");
+  }, [isLoggedIn]);
 
   return (
     <main className="signup-container">
