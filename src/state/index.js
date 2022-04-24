@@ -17,6 +17,11 @@ import { calculatePriceDetails } from "./util/calculatePriceDetails";
 import { WishListProvider, useWishList } from "./context/wishListContext";
 import { addToWishList } from "./util/addToWishList";
 import { removeFromWishList } from "./util/removeFromWishList";
+import { validateSignUp } from "./util/validateSignUp";
+import { validateLoginUser } from "./util/validateLoginUser";
+import { loginUser } from "./util/loginUser";
+import { userAuthReducer } from "./reducers/userAuthReducer";
+
 export {
     productinitalstate,
     ProductProvider,
@@ -42,4 +47,8 @@ export {
     useWishList,
     addToWishList,
     removeFromWishList,
+    validateSignUp,
+    validateLoginUser,
+    loginUser,
+    userAuthReducer,
 };

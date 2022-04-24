@@ -1,13 +1,18 @@
 import axios from "axios";
 import { CART_ACTION } from "../action";
-const changeTheQuantity = async(cartDispatch, productId, quantityAction) => {
+const changeTheQuantity = async(
+    cartDispatch,
+    productId,
+    quantityAction,
+    encodedToken
+) => {
     console.log(cartDispatch, productId, quantityAction);
     const {
         data: { cart },
     } = await axios.post(
         `/api/user/cart/${productId}`, { action: { type: quantityAction } }, {
             headers: {
-                authorization: localStorage.getItem("token"),
+                authorization: encodedToken,
             },
         }
     );

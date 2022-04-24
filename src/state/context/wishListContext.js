@@ -8,7 +8,7 @@ const WishListProvider = ({ children }) => {
     wishListReducer,
     wishlistinitialstate
   );
-  console.log(wishlistDispatch);
+
   return (
     <wishListcontext.Provider value={{ wishliststate, wishlistDispatch }}>
       {children}

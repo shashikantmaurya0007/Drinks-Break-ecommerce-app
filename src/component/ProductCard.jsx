@@ -5,6 +5,7 @@ import {
   isAlreadyExistInCart,
   useWishList,
   addToWishList,
+  useUser,
 } from "../state/index";
 import "../styles/ProductListing.css";
 import { useNavigate } from "react-router-dom";
@@ -28,6 +29,9 @@ const ProductCard = ({ product }) => {
     cartState: { cartProducts },
   } = useCart();
   const { wishlistDispatch } = useWishList();
+  const {
+    user: { isLoggedIn, encodedToken },
+  } = useUser();
 
   return (
     <div
@@ -73,7 +77,11 @@ const ProductCard = ({ product }) => {
             </p>
           ) : (
             <p
-              onClick={() => addItemToCart(cartDispatch, product)}
+              onClick={() =>
+                isLoggedIn
+                  ? addItemToCart(cartDispatch, product, encodedToken)
+                  : navigate("/login")
+              }
               className="card_btn btn btn-primary btn-solid"
             >
               Add To Cart<i class="bi bi-cart-fill"></i>
@@ -81,7 +89,11 @@ const ProductCard = ({ product }) => {
           )}
 
           <p
-            onClick={() => addToWishList(product, wishlistDispatch)}
+            onClick={() =>
+              isLoggedIn
+                ? addToWishList(product, wishlistDispatch, encodedToken)
+                : navigate("/login")
+            }
             className="card_btn btn btn-primary btn-outline"
           >
             Add to WishList<i class="bi bi-heart-half"></i>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Filter, FilteredProducts } from "../component/index";
-import { useProducts } from "../state";
+import { useProducts, useUser } from "../state";
 import { Audio } from "react-loader-spinner";
 import "../styles/Filter.css";
 
