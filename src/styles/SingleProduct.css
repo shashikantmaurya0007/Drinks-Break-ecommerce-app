@@ -1,0 +1,43 @@
+
+.singleprod_btn_con
+{
+
+    display: flex;
+    flex-direction: column;
+   
+}
+.singleprod_btn_con >p
+{
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.single_prod_main_con
+{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.single_prod_main_con div.card.shopping_card
+{
+    width: 44rem;
+    height: 22rem;
+}
+.single_prod_main_con div.card.shopping_card div.img-container
+{
+    height: 100%;
+}
+
+@media screen and (max-width:800px){
+
+    .single_prod_main_con div.card.shopping_card
+    {
+        width: 40rem;
+    }
+    
+}

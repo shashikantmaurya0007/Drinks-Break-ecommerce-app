@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React ,{useEffect,useState}from 'react'
 import { useParams } from 'react-router-dom'
+import '../styles/SingleProduct.css'
 
 
 const SingleProduct = () => {
@@ -12,8 +13,9 @@ const SingleProduct = () => {
   (
     async ()=>
       {
-           const {data}= await axios.get(`/api/products/${id}`);
-           console.log(data);
+           const {data:{product}}= await axios.get(`/api/products/${id}`);
+           console.log(product);
+           setProduct(product)
       }
   )()
 
@@ -21,31 +23,35 @@ const SingleProduct = () => {
 
   
   return (
-    <div>
+    <div className='single_prod_main_con'>
 
 
-    <div class="card shopping_card card_shadow horizontal">
-              <div class="img-container">
+    <div class="card shopping_card card_shadow horizontal ">
+              <div className="img-container">
                 <img
-                  src="https://stayglam.com/wp-content/uploads/2014/07/Top-14-Girly-Alcoholic-Drinks-2.jpg"
-                  alt=""
+                  src={product?.img}
+                  alt={product?.title}
                 />
               </div>
               <div class="lower-card">
                 <header>
-                  <h3>Sahi Vodka</h3>
-                  <p class="header-description">By Bartendar Shashi</p>
+                  <h3>{product?.title}</h3>
+                  <p class="header-description">From {product?.brand}</p>
                 </header>
                 <p class="card-description">
-                  <span class="product_price">₹600 </span><strike>₹1000</strike
-                  ><span class="card_discount">40% off</span
-                  ><span class="product_rating">4⭐</span>
+                  <span class="product_price">₹{product?.finalPrice} </span><strike>₹{product?.price}</strike
+                  ><span class="card_discount">{product?.discountPercent}% off</span
+                  ><span class="product_rating">{product?.rating}⭐</span>
                 </p>
-                <div class="btn-container">
-                  <a href="#" class="btn btn-primary btn-solid">Add To Cart</a>
-                  <a href="#" class="btn btn-primary btn-outline"
-                    >Add to WishList</a
-                  >
+                <div>
+                  <p><i class="bi bi-tags-fill"></i> Fast Delivery</p>
+                  <p><i class="bi bi-tags-fill"></i>Free Home-Delivery</p>
+                  <p><i class="bi bi-tags-fill"></i>Applicable for coupon</p>
+                </div>
+                <div class="btn-container singleprod_btn_con">
+                  <p  class="btn btn-primary btn-solid">Add To Cart</p>
+                  <p class="btn btn-primary btn-outline"
+                    >Add to WishList</p>
                 </div>
               </div>
             </div>
