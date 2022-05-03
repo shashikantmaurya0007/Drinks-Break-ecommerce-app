@@ -2,12 +2,15 @@ import axios from 'axios';
 import React ,{useEffect,useState}from 'react'
 import { useParams } from 'react-router-dom'
 import '../styles/SingleProduct.css'
-
+import {useCart} from "../state/index";
 
 const SingleProduct = () => {
   const {id}=  useParams()
   const [product,setProduct]=useState(null);
-  console.log(id)
+  const {
+    cartDispatch,
+    cartState: { cartProducts },
+  } = useCart();
   useEffect(()=>{
 
   (
@@ -22,11 +25,12 @@ const SingleProduct = () => {
   },[])
 
   
-  return (
-    <div className='single_prod_main_con'>
+  return<> 
+   {
+     product &&<div className='single_prod_main_con'>
 
 
-    <div class="card shopping_card card_shadow horizontal ">
+       <div class="card shopping_card card_shadow horizontal ">
               <div className="img-container">
                 <img
                   src={product?.img}
@@ -43,20 +47,21 @@ const SingleProduct = () => {
                   ><span class="card_discount">{product?.discountPercent}% off</span
                   ><span class="product_rating">{product?.rating}⭐</span>
                 </p>
-                <div>
+                <div className='single_prod_desc'>
                   <p><i class="bi bi-tags-fill"></i> Fast Delivery</p>
                   <p><i class="bi bi-tags-fill"></i>Free Home-Delivery</p>
                   <p><i class="bi bi-tags-fill"></i>Applicable for coupon</p>
                 </div>
                 <div class="btn-container singleprod_btn_con">
-                  <p  class="btn btn-primary btn-solid">Add To Cart</p>
+                  <p  class="btn btn-primary btn-solid" onClick={()=>{}}>Add To Cart</p>
                   <p class="btn btn-primary btn-outline"
                     >Add to WishList</p>
                 </div>
               </div>
             </div>
     </div>
-  )
+   }
+  </>
 }
 
 export {SingleProduct}
