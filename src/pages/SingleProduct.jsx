@@ -2,11 +2,13 @@ import axios from 'axios';
 import React ,{useEffect,useState}from 'react'
 import { useParams } from 'react-router-dom'
 import '../styles/SingleProduct.css'
+import { Audio } from "react-loader-spinner";
 import {useCart} from "../state/index";
 
 const SingleProduct = () => {
   const {id}=  useParams()
   const [product,setProduct]=useState(null);
+  const [loading,setLoading]=useState(true)
   const {
     cartDispatch,
     cartState: { cartProducts },
@@ -15,10 +17,20 @@ const SingleProduct = () => {
 
   (
     async ()=>
-      {
+      {  
+        try{
            const {data:{product}}= await axios.get(`/api/products/${id}`);
            console.log(product);
-           setProduct(product)
+          
+           setTimeout(() => {
+              setProduct(product)
+              setLoading(false)
+           }, 3000);
+        }
+        catch(e)
+        {
+            setLoading(false)
+        }
       }
   )()
 
@@ -26,11 +38,24 @@ const SingleProduct = () => {
 
   
   return<> 
-   {
-     product &&<div className='single_prod_main_con'>
+  { loading&&<div className='single_prod_main_con'>
+    
+  <Audio height="100" width="100" color="grey" ariaLabel="loading" />
+    </div>}
+   {  
+     
+     
+
+     (product &&<div className='single_prod_main_con'>
 
 
-       <div class="card shopping_card card_shadow horizontal ">
+       <div className={`card shopping_card card_shadow horizontal `}>
+       {product?.offer && <p className="card_text_badge">{product?.offer}</p>}
+       {product?.offer === "outOfStock" && (
+        <div className="card-overlay-text">
+          <span>Out of Stock</span>
+        </div>
+      )}
               <div className="img-container">
                 <img
                   src={product?.img}
@@ -59,7 +84,7 @@ const SingleProduct = () => {
                 </div>
               </div>
             </div>
-    </div>
+    </div>)
    }
   </>
 }
