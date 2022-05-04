@@ -70,28 +70,28 @@ const SingleProduct = () => {
                   alt={product?.title}
                 />
               </div>
-              <div class="lower-card">
+              <div className="lower-card">
                 <header>
                   <h3>{product?.title}</h3>
-                  <p class="header-description">From {product?.brand}</p>
+                  <p className="header-description">From {product?.brand}</p>
                 </header>
-                <p class="card-description">
-                  <span class="product_price">₹{product?.finalPrice} </span><strike>₹{product?.price}</strike
-                  ><span class="card_discount">{product?.discountPercent}% off</span
-                  ><span class="product_rating">{product?.rating}⭐</span>
+                <p className="card-description">
+                  <span className="product_price">₹{product?.finalPrice} </span><strike>₹{product?.price}</strike
+                  ><span className="card_discount">{product?.discountPercent}% off</span
+                  ><span className="product_rating">{product?.rating}⭐</span>
                 </p>
                 <div className='single_prod_desc'>
-                  <p><i class="bi bi-tags-fill"></i> Fast Delivery</p>
-                  <p><i class="bi bi-tags-fill"></i>Free Home-Delivery</p>
-                  <p><i class="bi bi-tags-fill"></i>Applicable for coupon</p>
+                  <p><i className="bi bi-tags-fill"></i> Fast Delivery</p>
+                  <p><i className="bi bi-tags-fill"></i>Free Home-Delivery</p>
+                  <p><i className="bi bi-tags-fill"></i>Applicable for coupon</p>
                 </div>
-                <div class="btn-container singleprod_btn_con">
+                <div className="btn-container singleprod_btn_con">
                 {isAlreadyExistInCart(cartProducts, id) ? (
             <p
               onClick={(e) =>{ navigate("/cart")}}
               className="card_btn btn btn-primary btn-solid"
             >
-              Go To Cart <i class="bi bi-cart-fill"></i>
+              Go To Cart <i className="bi bi-cart-fill"></i>
             </p>
           ) : (
             <p
@@ -103,9 +103,9 @@ const SingleProduct = () => {
               }
               className="card_btn btn btn-primary btn-solid"
             >
-              Add To Cart<i class="bi bi-cart-fill"></i>
+              Add To Cart<i className="bi bi-cart-fill"></i>
             </p>
-          )}          {console.log(isAlreadyExistInWishList(wishlistproducts,product._id),'ye dekh le bhai')}
+          )}         
                   <p onClick={()=>{ isAlreadyExistInWishList(wishlistproducts,product._id)?removeFromWishList(product._id,wishlistDispatch,encodedToken): addToWishList(product, wishlistDispatch, encodedToken)}} class="btn btn-primary btn-outline"
                     > {isAlreadyExistInWishList(wishlistproducts,product._id)?"Remove From WishList":"Add to WishList"}</p>
                 </div>
