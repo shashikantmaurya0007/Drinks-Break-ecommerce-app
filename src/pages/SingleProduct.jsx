@@ -3,7 +3,7 @@ import React ,{useEffect,useState}from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import '../styles/SingleProduct.css'
 import { Audio } from "react-loader-spinner";
-import {useCart,useUser,addItemToCart, isAlreadyExistInCart,useWishList,addToWishList} from "../state/index";
+import {useCart,useUser,addItemToCart, isAlreadyExistInCart,useWishList,addToWishList, isAlreadyExistInWishList, removeFromWishList} from "../state/index";
 
 const SingleProduct = () => {
   const {id}=  useParams()
@@ -14,7 +14,7 @@ const SingleProduct = () => {
     cartDispatch,
     cartState: { cartProducts },
   } = useCart();
-  const { wishlistDispatch } = useWishList();
+  const { wishlistDispatch, wishliststate: { wishlistproducts } } = useWishList();
   console.log(useCart)
   const {
     user: { encodedToken },
@@ -105,9 +105,9 @@ const SingleProduct = () => {
             >
               Add To Cart<i class="bi bi-cart-fill"></i>
             </p>
-          )}
-                  <p onClick={()=>{ addToWishList(product, wishlistDispatch, encodedToken)}} class="btn btn-primary btn-outline"
-                    >Add to WishList</p>
+          )}          {console.log(isAlreadyExistInWishList(wishlistproducts,product._id),'ye dekh le bhai')}
+                  <p onClick={()=>{ isAlreadyExistInWishList(wishlistproducts,product._id)?removeFromWishList(product._id,wishlistDispatch,encodedToken): addToWishList(product, wishlistDispatch, encodedToken)}} class="btn btn-primary btn-outline"
+                    > {isAlreadyExistInWishList(wishlistproducts,product._id)?"Remove From WishList":"Add to WishList"}</p>
                 </div>
               </div>
             </div>

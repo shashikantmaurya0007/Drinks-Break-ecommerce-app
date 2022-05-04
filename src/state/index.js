@@ -21,7 +21,7 @@ import { validateSignUp } from "./util/validateSignUp";
 import { validateLoginUser } from "./util/validateLoginUser";
 import { loginUser } from "./util/loginUser";
 import { userAuthReducer } from "./reducers/userAuthReducer";
-
+import {isAlreadyExistInWishList} from './util/isAlreadyExistInWishList'
 export {
     productinitalstate,
     ProductProvider,
@@ -51,4 +51,5 @@ export {
     validateLoginUser,
     loginUser,
     userAuthReducer,
+    isAlreadyExistInWishList
 };
