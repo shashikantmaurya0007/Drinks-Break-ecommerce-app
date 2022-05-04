@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
  * */
 
 export const products = [{
-        _id: 1,
+        _id: uuid(),
         title: "Strong Beer(650ml)",
         brand: "KingFisher",
         price: 240,

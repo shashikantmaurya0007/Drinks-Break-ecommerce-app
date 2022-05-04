@@ -3,7 +3,7 @@ import React ,{useEffect,useState}from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import '../styles/SingleProduct.css'
 import { Audio } from "react-loader-spinner";
-import {useCart,useUser,addItemToCart, isAlreadyExistInCart,isLoggedIn} from "../state/index";
+import {useCart,useUser,addItemToCart, isAlreadyExistInCart,useWishList,addToWishList} from "../state/index";
 
 const SingleProduct = () => {
   const {id}=  useParams()
@@ -14,7 +14,7 @@ const SingleProduct = () => {
     cartDispatch,
     cartState: { cartProducts },
   } = useCart();
-
+  const { wishlistDispatch } = useWishList();
   console.log(useCart)
   const {
     user: { encodedToken },
@@ -106,7 +106,7 @@ const SingleProduct = () => {
               Add To Cart<i class="bi bi-cart-fill"></i>
             </p>
           )}
-                  <p class="btn btn-primary btn-outline"
+                  <p onClick={()=>{ addToWishList(product, wishlistDispatch, encodedToken)}} class="btn btn-primary btn-outline"
                     >Add to WishList</p>
                 </div>
               </div>
