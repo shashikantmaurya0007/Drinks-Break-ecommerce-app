@@ -1,18 +1,24 @@
 import axios from 'axios';
 import React ,{useEffect,useState}from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import '../styles/SingleProduct.css'
 import { Audio } from "react-loader-spinner";
-import {useCart} from "../state/index";
+import {useCart,useUser,addItemToCart, isAlreadyExistInCart,isLoggedIn} from "../state/index";
 
 const SingleProduct = () => {
   const {id}=  useParams()
+  const navigate = useNavigate();
   const [product,setProduct]=useState(null);
   const [loading,setLoading]=useState(true)
   const {
     cartDispatch,
     cartState: { cartProducts },
   } = useCart();
+
+  console.log(useCart)
+  const {
+    user: { encodedToken },
+  } = useUser();
   useEffect(()=>{
 
   (
@@ -20,16 +26,18 @@ const SingleProduct = () => {
       {  
         try{
            const {data:{product}}= await axios.get(`/api/products/${id}`);
-           console.log(product);
+        
           
            setTimeout(() => {
               setProduct(product)
+
               setLoading(false)
-           }, 3000);
+           }, 2000);
         }
         catch(e)
         {
             setLoading(false)
+            
         }
       }
   )()
@@ -78,7 +86,26 @@ const SingleProduct = () => {
                   <p><i class="bi bi-tags-fill"></i>Applicable for coupon</p>
                 </div>
                 <div class="btn-container singleprod_btn_con">
-                  <p  class="btn btn-primary btn-solid" onClick={()=>{}}>Add To Cart</p>
+                {isAlreadyExistInCart(cartProducts, id) ? (
+            <p
+              onClick={(e) =>{ navigate("/cart")}}
+              className="card_btn btn btn-primary btn-solid"
+            >
+              Go To Cart <i class="bi bi-cart-fill"></i>
+            </p>
+          ) : (
+            <p
+              onClick={(e) =>{
+                console.log(cartDispatch,product,encodedToken,'hello')
+               
+                   addItemToCart(cartDispatch,product, encodedToken)
+                 }
+              }
+              className="card_btn btn btn-primary btn-solid"
+            >
+              Add To Cart<i class="bi bi-cart-fill"></i>
+            </p>
+          )}
                   <p class="btn btn-primary btn-outline"
                     >Add to WishList</p>
                 </div>

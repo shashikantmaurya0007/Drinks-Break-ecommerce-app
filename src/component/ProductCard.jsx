@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
   const {
     user: { isLoggedIn, encodedToken },
   } = useUser();
-
+console.log(cartDispatch)
   return (
     <div onClick={()=>{navigate(`/product/${id}`) }}
       className={`card card_overlay shopping_card card_shadow vertical ${
