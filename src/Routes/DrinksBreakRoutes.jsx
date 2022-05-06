@@ -9,6 +9,7 @@ import {
   ProductsListing,
   Login,
   Signup,
+  SingleProduct
 } from "../pages/index.js";
 import { RequireAuth } from "../component/index";
 const DrinksBreakRoutes = () => {
@@ -25,6 +26,7 @@ const DrinksBreakRoutes = () => {
         <Route path="/" element={<RequireAuth />}>
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<WishList />} />
+          <Route path="/product/:id"  element={<SingleProduct/>}/>
         </Route>
       </Routes>
     </div>

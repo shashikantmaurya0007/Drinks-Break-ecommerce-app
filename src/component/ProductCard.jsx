@@ -32,9 +32,9 @@ const ProductCard = ({ product }) => {
   const {
     user: { isLoggedIn, encodedToken },
   } = useUser();
-
+console.log(cartDispatch)
   return (
-    <div
+    <div onClick={()=>{navigate(`/product/${id}`) }}
       className={`card card_overlay shopping_card card_shadow vertical ${
         offer && "offer"
       }`}
@@ -70,17 +70,18 @@ const ProductCard = ({ product }) => {
         <div className="btn-container">
           {isAlreadyExistInCart(cartProducts, id) ? (
             <p
-              onClick={() => navigate("/cart")}
+              onClick={(e) =>{ e.stopPropagation();navigate("/cart")}}
               className="card_btn btn btn-primary btn-solid"
             >
               Go To Cart <i class="bi bi-cart-fill"></i>
             </p>
           ) : (
             <p
-              onClick={() =>
+              onClick={(e) =>{
+                e.stopPropagation();
                 isLoggedIn
                   ? addItemToCart(cartDispatch, product, encodedToken)
-                  : navigate("/login")
+                  : navigate("/login")}
               }
               className="card_btn btn btn-primary btn-solid"
             >
@@ -89,10 +90,10 @@ const ProductCard = ({ product }) => {
           )}
 
           <p
-            onClick={() =>
+            onClick={(e) =>{e.stopPropagation();
               isLoggedIn
                 ? addToWishList(product, wishlistDispatch, encodedToken)
-                : navigate("/login")
+                : navigate("/login")}
             }
             className="card_btn btn btn-primary btn-outline"
           >
