@@ -58,7 +58,7 @@ const Login = () => {
   };
   useEffect(
     () => isLoggedIn && navigate(redirect, { replace: true }),
-    [isLoggedIn]
+    [isLoggedIn, navigate]
   );
   return (
     <main className="signup-container">
