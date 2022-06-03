@@ -9,19 +9,25 @@ import {
   ProductsListing,
   Login,
   Signup,
+  SingleProduct
 } from "../pages/index.js";
+import { RequireAuth } from "../component/index";
 const DrinksBreakRoutes = () => {
   return (
     <div className="routes_height">
       <Routes>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<WishList />} />
         <Route path="/products" element={<ProductsListing />} />
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/mockman" element={<MockmanEs />} />
         <Route path="*" element={<Error />} />
+
+        <Route path="/" element={<RequireAuth />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/product/:id"  element={<SingleProduct/>}/>
+        </Route>
       </Routes>
     </div>
   );

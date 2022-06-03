@@ -4,3 +4,5 @@ import { FilteredProducts } from "./FilteredProducts";
 export { Error }
 from "./Error";
 export { Filter, ProductCard, FilteredProducts };
+export { RequireAuth }
+from "./RequireAuth";

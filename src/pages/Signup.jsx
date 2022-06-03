@@ -1,177 +1,181 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useStateCallback } from "use-state-callback";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../state/util/index";
+import { useUser, validateSignUp } from "../state/index.js";
+import { toast } from "react-toastify";
+import { registerUser } from "../state/util/registerUser.js";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [signUpForm, updateSignUpForm] = useState({
-    email: "   ",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-  });
 
-  const [validationMessage, setValidationMessage] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-  });
+  const [firstName, setFirstName] = useStateCallback("");
+  const [lastName, setLastName] = useStateCallback("");
+  const [email, setEmail] = useStateCallback("");
+  const [password, setPassword] = useStateCallback("");
+  const [confirmPassword, setConfirmPassword] = useStateCallback("");
+  //error message
+  const [firstNameError, setFirstNameError] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const {
+    user: { isLoggedIn },
+  } = useUser();
 
   const signUpFormSubmission = async () => {
-    if (signUpForm.firstName.trim() === "") {
-      setValidationMessage((prev) => {
-        return { ...prev, firstName: "firstName can not be empty" };
-      });
-    } else {
-      setValidationMessage((prev) => {
-        return { ...prev, firstName: "" };
-      });
-    }
-    if (signUpForm.lastName.trim() === "") {
-      setValidationMessage((prev) => {
-        return { ...prev, lastName: "lastName can not be empty" };
-      });
-    } else {
-      setValidationMessage((prev) => {
-        return { ...prev, lastName: "" };
-      });
-    }
-    if (
-      signUpForm.email.trim() === "" ||
-      !signUpForm.email.includes("@") ||
-      !signUpForm.email.includes(".")
-    ) {
-      setValidationMessage((prev) => {
-        return { ...prev, email: "email must include @ and ." };
-      });
-    } else {
-      setValidationMessage((prev) => {
-        return { ...prev, email: "" };
-      });
-    }
-    if (
-      signUpForm.password.trim() === "" ||
-      !signUpForm.password.includes("@") ||
-      !/\d/.test(signUpForm.password)
-    ) {
-      setValidationMessage((prev) => {
-        return {
-          ...prev,
-          password: "email must include @ and one numberic char",
-        };
-      });
-      console.log("email");
-    } else {
-      setValidationMessage((prev) => {
-        return { ...prev, password: "" };
-      });
+    const validate = validateSignUp(
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      firstNameError,
+      lastNameError,
+      emailError,
+      passwordError,
+      confirmPasswordError
+    );
+
+    if (!validate) {
+      toast.error("Please fill all the details");
+      return;
+    } else if (password != confirmPassword) {
+      toast.error("password and confirmPassword didnot match");
+
+      return;
     }
 
-    if (signUpForm.confirmPassword !== signUpForm.password) {
-      setValidationMessage((prev) => {
-        return {
-          ...prev,
-          confirmPassword: "please put the same password",
-        };
-      });
-    } else {
-      setValidationMessage((prev) => {
-        return {
-          ...prev,
-          confirmPassword: "",
-        };
-      });
-    }
+    const status = await registerUser({ email, password, firstName, lastName });
 
-    if (
-      !validationMessage.firstName &&
-      !validationMessage.lastName &&
-      !validationMessage.email &&
-      !validationMessage.password &&
-      !validationMessage.confirmPassword
-    ) {
-      console.log("status ke pehle");
-      const status = await registerUser(signUpForm);
-      console.log(status);
-      if (status === 201) navigate("/login");
-      else {
-        console.log("already registered");
-      }
-
-      console.log("shashi");
-    } else {
+    if (status === 201) toast.success("successfully signup");
+    else {
+      toast.error("user already registered");
+      return;
     }
+    navigate("/login");
   };
+  useEffect(() => {
+    isLoggedIn && navigate("/");
+  }, [isLoggedIn]);
 
   return (
     <main className="signup-container">
-      <section className="signup-box">
+      <form className="signup-box">
         <h1 className="signup-header">Sign- Up</h1>
         <div className="lab-input">
           <label>FirstName*</label>
           <input
             type="text"
             placeholder="shashi"
-            value={signUpForm.firstName}
-            onChange={(e) =>
-              updateSignUpForm({ ...signUpForm, firstName: e.target.value })
-            }
+            value={firstName}
+            onChange={(e) => {
+              setFirstName(e.target.value, (firstName) => {
+                firstName.trim().length
+                  ? setFirstNameError("")
+                  : setFirstNameError("*First Name can not be empty*");
+              });
+            }}
           />
-          <p className="form_error">{validationMessage.firstName}</p>
+          <p className="form_error">{firstNameError}</p>
         </div>
         <div className="lab-input">
           <label>LastName*</label>
           <input
             type="text"
             placeholder="Maurya"
-            value={signUpForm.lastName}
-            onChange={(e) =>
-              updateSignUpForm({ ...signUpForm, lastName: e.target.value })
-            }
+            value={lastName}
+            onChange={(e) => {
+              setLastName(e.target.value, (lastName) => {
+                lastName.trim().length
+                  ? setLastNameError("")
+                  : setLastNameError("*Last Name can not be empty*");
+              });
+            }}
           />
-          <p className="form_error">{validationMessage.lastName}</p>
+          <p className="form_error">{lastNameError}</p>
         </div>
         <div className="lab-input">
           <label>Email*</label>
           <input
             type="Email"
             placeholder="shashimourya1@gmail.com"
-            value={signUpForm.email}
+            value={email}
             onChange={(e) =>
-              updateSignUpForm({ ...signUpForm, email: e.target.value })
+              setEmail(e.target.value, (email) => {
+                const reg = /\S+@\S+\.\S+/;
+                reg.test(email)
+                  ? setEmailError("")
+                  : setEmailError("*Please enter the correct email pattern*");
+              })
             }
           />
-          <p className="form_error">{validationMessage.email}</p>
+
+          <p className="form_error">{emailError}</p>
         </div>
         <div className="lab-input">
           <label> Password*</label>
           <input
-            type="password"
-            placeholder="Do not share your password                                                    👀 "
-            value={signUpForm.password}
+            type={showPassword ? "text" : "password"}
+            placeholder="Do not share your password                                                    "
+            value={password}
             onChange={(e) =>
-              updateSignUpForm({ ...signUpForm, password: e.target.value })
+              setPassword(e.target.value, (password) => {
+                password.trim().length >= 4
+                  ? setPasswordError("")
+                  : setPasswordError(
+                      "Password field can not be empty and minimum length is 4"
+                    );
+              })
             }
           />
-          <p className="form_error">{validationMessage.password}</p>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setShowPassword((prev) => !prev);
+            }}
+            className="showPassword_"
+          >
+            {!showPassword ? (
+              <i class="bi bi-eye-slash-fill"></i>
+            ) : (
+              <i class="bi bi-eye-fill"></i>
+            )}
+          </button>
+          <p className="form_error">{passwordError}</p>
         </div>
         <div className="lab-input">
           <label>Confirm Password*</label>
           <input
-            type="password"
-            placeholder="Do not share your password                                                    👀"
+            type={!showConfirmPassword ? "password" : "text"}
+            placeholder="Do not share your password                                                    "
             onChange={(e) =>
-              updateSignUpForm({
-                ...signUpForm,
-                confirmPassword: e.target.value,
+              setConfirmPassword(e.target.value, (password) => {
+                password.trim().length >= 4
+                  ? setConfirmPasswordError("")
+                  : setConfirmPasswordError(
+                      "Confirm-Password field can not be empty and minimum length is 4"
+                    );
               })
             }
-            value={signUpForm.confirmPassword}
+            value={confirmPassword}
           />
-          <p>{validationMessage.confirmPassword}</p>
+          <button
+            onClick={(e) => {
+              setShowConfirmPassword((prev) => !prev);
+              e.preventDefault();
+            }}
+            className="showPassword_"
+          >
+            {!showConfirmPassword ? (
+              <i class="bi bi-eye-slash-fill"></i>
+            ) : (
+              <i class="bi bi-eye-fill"></i>
+            )}
+          </button>
+          <p className="form_error">{confirmPasswordError}</p>
         </div>
 
         <div className="checkbox" style={{ width: "90%" }}>
@@ -188,13 +192,14 @@ const Signup = () => {
             Sign-up
           </p>
         </div>
+
         <p
           className="btn btn-primary btn-link"
           onClick={() => navigate("/login")}
         >
           Already Have an account let me log-in
         </p>
-      </section>
+      </form>
     </main>
   );
 };

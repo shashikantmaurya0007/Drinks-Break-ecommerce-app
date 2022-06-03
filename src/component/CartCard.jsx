@@ -1,6 +1,13 @@
 import React from "react";
 
-import { useCart, removeItemFromCart, changeTheQuantity } from "../state/index";
+import {
+  useCart,
+  removeItemFromCart,
+  changeTheQuantity,
+  useUser,
+  addToWishList,
+  useWishList,
+} from "../state/index";
 
 const CartCard = ({ product }) => {
   const { cartDispatch } = useCart();
@@ -17,6 +24,11 @@ const CartCard = ({ product }) => {
 
     qty,
   } = product;
+  const {
+    user: { encodedToken },
+  } = useUser();
+  const { wishlistDispatch } = useWishList();
+
   return (
     <div className="card shopping_card card_shadow horizontal">
       <div className="img-container horizontal_container">
@@ -35,7 +47,9 @@ const CartCard = ({ product }) => {
         </p>
         <div className="cart_product_quantity">
           <p
-            onClick={() => changeTheQuantity(cartDispatch, id, "increment")}
+            onClick={() =>
+              changeTheQuantity(cartDispatch, id, "increment", encodedToken)
+            }
             className="btn btn-float"
           >
             <span>
@@ -45,7 +59,8 @@ const CartCard = ({ product }) => {
           <h1>{qty}</h1>
           <p
             onClick={() =>
-              qty > 1 && changeTheQuantity(cartDispatch, id, "decrement")
+              qty > 1 &&
+              changeTheQuantity(cartDispatch, id, "decrement", encodedToken)
             }
             className="btn btn-float"
           >
@@ -61,7 +76,12 @@ const CartCard = ({ product }) => {
           >
             Remove From Cart
           </p>
-          <p className="btn btn-primary btn-outline card_btn">
+          <p
+            className="btn btn-primary btn-outline card_btn"
+            onClick={() =>
+              addToWishList(product, wishlistDispatch, encodedToken)
+            }
+          >
             Add to WishList
           </p>
         </div>

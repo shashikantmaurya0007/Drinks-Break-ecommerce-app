@@ -5,6 +5,7 @@ import {
   isAlreadyExistInCart,
   useWishList,
   addToWishList,
+  useUser,
 } from "../state/index";
 import "../styles/ProductListing.css";
 import { useNavigate } from "react-router-dom";
@@ -28,9 +29,12 @@ const ProductCard = ({ product }) => {
     cartState: { cartProducts },
   } = useCart();
   const { wishlistDispatch } = useWishList();
-
+  const {
+    user: { isLoggedIn, encodedToken },
+  } = useUser();
+console.log(cartDispatch)
   return (
-    <div
+    <div onClick={()=>{navigate(`/product/${id}`) }}
       className={`card card_overlay shopping_card card_shadow vertical ${
         offer && "offer"
       }`}
@@ -66,14 +70,19 @@ const ProductCard = ({ product }) => {
         <div className="btn-container">
           {isAlreadyExistInCart(cartProducts, id) ? (
             <p
-              onClick={() => navigate("/cart")}
+              onClick={(e) =>{ e.stopPropagation();navigate("/cart")}}
               className="card_btn btn btn-primary btn-solid"
             >
               Go To Cart <i class="bi bi-cart-fill"></i>
             </p>
           ) : (
             <p
-              onClick={() => addItemToCart(cartDispatch, product)}
+              onClick={(e) =>{
+                e.stopPropagation();
+                isLoggedIn
+                  ? addItemToCart(cartDispatch, product, encodedToken)
+                  : navigate("/login")}
+              }
               className="card_btn btn btn-primary btn-solid"
             >
               Add To Cart<i class="bi bi-cart-fill"></i>
@@ -81,7 +90,11 @@ const ProductCard = ({ product }) => {
           )}
 
           <p
-            onClick={() => addToWishList(product, wishlistDispatch)}
+            onClick={(e) =>{e.stopPropagation();
+              isLoggedIn
+                ? addToWishList(product, wishlistDispatch, encodedToken)
+                : navigate("/login")}
+            }
             className="card_btn btn btn-primary btn-outline"
           >
             Add to WishList<i class="bi bi-heart-half"></i>

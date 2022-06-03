@@ -2,12 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useUser } from "../state";
+import { USER_AUTH_ACTION } from "../state/action";
 
 const UserProfileInNavbar = () => {
   const [disp_, setDisplay] = useState("none");
 
   const {
-    user: { firstName },
+    user: { isLoggedIn, firstName },
+    userDispatch,
   } = useUser();
 
   return (
@@ -26,13 +28,28 @@ const UserProfileInNavbar = () => {
         </div>
       </section>
       <section className="user_navbar" style={{ display: disp_ }}>
-        <Link to={"/sign-up"} className="link_">
-          <p className="user_navbar_option">Account</p>
-        </Link>
-        <div className="break"></div>
-        <Link to={"/login"} className="link_">
-          <p className="user_navbar_option">Login</p>
-        </Link>
+        {isLoggedIn ? (
+          <p
+            className="user_navbar_option"
+            onClick={() => {
+              userDispatch({ type: USER_AUTH_ACTION.LOGOUT_SUCCESSFULL });
+              localStorage.removeItem("loginDetails");
+              window.location.reload(false);
+            }}
+          >
+            Logout
+          </p>
+        ) : (
+          <div>
+            <Link to={"/sign-up"} className="link_">
+              <p className="user_navbar_option">signup</p>
+            </Link>
+            <div className="break"></div>
+            <Link to={"/login"} className="link_">
+              <p className="user_navbar_option">Login</p>
+            </Link>
+          </div>
+        )}
       </section>
     </section>
   );

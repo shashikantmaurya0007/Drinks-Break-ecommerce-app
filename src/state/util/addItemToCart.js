@@ -1,23 +1,28 @@
 import axios from "axios";
 import { CART_ACTION } from "../action";
 
-const addItemToCart = async(cartDispatch, product) => {
+const addItemToCart = async(cartDispatch, product, token) => {
+
+    
+    
     try {
         const {
             data: { cart },
         } = await axios.post(
-            "api/user/cart", {
+            "/api/user/cart", {
                 product,
             }, {
                 headers: {
-                    authorization: localStorage.getItem("token"),
+                    authorization: token,
                 },
             }
         );
+        
 
         cartDispatch({ type: CART_ACTION.ADD_TO_CART, payload: cart });
-    } catch {
+    } catch (error){
         cartDispatch({ type: CART_ACTION.ERROR, payload: "error occured here" });
+       
     }
 };
 
