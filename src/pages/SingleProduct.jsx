@@ -48,7 +48,6 @@ const SingleProduct = () => {
       }
     })();
   }, []);
-  console.log("hello");
 
   return (
     <>
