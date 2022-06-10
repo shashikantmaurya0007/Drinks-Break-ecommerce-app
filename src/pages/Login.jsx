@@ -21,7 +21,35 @@ const Login = () => {
     user: { isLoggedIn },
     userDispatch,
   } = useUser();
+  const loginTestUser = async () => {
+    debugger;
+    const res = await loginUser("shashimourya1@gmail.com", "shashi1234");
+    const { status, foundUser, encodedToken } = res;
 
+    if (status === 201) {
+      toast.error("wrong password");
+      return;
+    }
+    if (status === 404) {
+      toast.error("wrong email and password");
+      return;
+    }
+    toast.success(`${foundUser.firstName} wish you happy shopping`);
+    const loginDetails = {
+      isLoggedIn: true,
+      firstName: foundUser.firstName,
+      encodedToken: encodedToken,
+    };
+
+    localStorage.setItem("loginDetails", JSON.stringify(loginDetails));
+
+    userDispatch({
+      type: USER_AUTH_ACTION.LOGIN_SUCCESSFULL,
+      payload: { ...loginDetails },
+    });
+
+    navigate(redirect, { replace: true });
+  };
   const loginAndValidateUser = async () => {
     const validate = validateLoginUser(email, emailError, passwordError);
     if (!validate) {
@@ -123,6 +151,9 @@ const Login = () => {
           <p className="btn btn-primary btn-link">Forgot Password?</p>
         </div>
         <div className="login_btn">
+          <p className="btn btn-primary btn-solid" onClick={loginTestUser}>
+            Login Test User
+          </p>
           <p
             className="btn btn-primary btn-solid"
             onClick={loginAndValidateUser}

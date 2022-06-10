@@ -15,6 +15,7 @@ import {
 } from "../state/index";
 
 const SingleProduct = () => {
+  debugger;
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
@@ -47,7 +48,7 @@ const SingleProduct = () => {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [id]);
 
   return (
     <>
