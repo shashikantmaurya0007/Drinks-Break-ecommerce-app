@@ -23,6 +23,7 @@ const ProductsListing = () => {
     }
     return () => {
       window.removeEventListener("resize");
+      
     };
   }, []);
 

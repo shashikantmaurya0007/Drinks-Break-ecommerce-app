@@ -11,6 +11,7 @@ import {
   UserProvider,
   CartProvider,
   WishListProvider,
+  SearchProvider,
 } from "./state/index";
 
 // Call make Server
@@ -19,17 +20,19 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <ProductProvider>
-        <FilterProvider>
-          <UserProvider>
-            <WishListProvider>
-              <CartProvider>
-                <App />
-              </CartProvider>{" "}
-            </WishListProvider>{" "}
-          </UserProvider>{" "}
-        </FilterProvider>{" "}
-      </ProductProvider>{" "}
+      <SearchProvider>
+        <ProductProvider>
+          <FilterProvider>
+            <UserProvider>
+              <WishListProvider>
+                <CartProvider>
+                  <App />
+                </CartProvider>{" "}
+              </WishListProvider>{" "}
+            </UserProvider>{" "}
+          </FilterProvider>{" "}
+        </ProductProvider>{" "}
+      </SearchProvider>
     </Router>{" "}
   </React.StrictMode>,
   document.getElementById("root")
