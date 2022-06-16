@@ -8,32 +8,95 @@
   bottom: 0;
   right: 0;
   display: flex;
+
   justify-content: center;
 }
 .search_con {
   width: 22rem;
-  height: 22rem;
+
   z-index: 11;
   opacity: 1;
-  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin: 1rem auto;
 }
 .searchPortalSearch {
   width: 30rem;
   height: 2.3rem;
   background-color: whitesmoke;
   border-radius: 1rem;
+
   border: 0px;
   outline: none;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.search_content {
+  min-width: 80vw;
+  max-width: fit-content;
+  margin: 0 auto;
+  overflow-y: scroll;
+}
 input {
   background-color: whitesmoke;
+}
+.search_product_list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-items: center;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
+}
+.search_cancel_btn {
+  position: absolute;
+  right: 2rem;
+  font-size: 1.5rem;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  z-index: 11;
+  cursor: pointer;
+  padding: 1.5rem;
+  background-color: whitesmoke;
+  border-radius: 100%;
+}
+.search_cancel_btn:hover {
+  background-color: gainsboro;
+}
+.no_result_found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.no_result_found p {
+  text-align: center;
+  font-weight: bolder;
+  color: whitesmoke;
+}
+.img_no_result_found {
+  width: 22rem;
+  margin: 0 auto;
+}
+
+/* @media screen and (max-width: 868px) {
+  .search_content {
+  }
+} */
+@media screen and (max-width: 1200px) {
+  .search_product_list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (max-width: 800px) {
   .searchPortalSearch {
     width: 22rem;
     height: 3rem;
+  }
+  .search_product_list {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
