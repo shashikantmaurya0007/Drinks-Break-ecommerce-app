@@ -32,9 +32,12 @@ const ProductCard = ({ product }) => {
   const {
     user: { isLoggedIn, encodedToken },
   } = useUser();
-console.log(cartDispatch)
+  console.log(cartDispatch);
   return (
-    <div onClick={()=>{navigate(`/product/${id}`) }}
+    <div
+      onClick={() => {
+        navigate(`/product/${id}`);
+      }}
       className={`card card_overlay shopping_card card_shadow vertical ${
         offer && "offer"
       }`}
@@ -46,7 +49,7 @@ console.log(cartDispatch)
         </div>
       )}
       <div className="img-container">
-        <img className="product_image" src={img} alt={category} />
+        <img className="product_image contain" src={img} alt={category} />
       </div>
       <div className="lower-card">
         <header style={{ paddingTop: "10px" }}>
@@ -70,19 +73,22 @@ console.log(cartDispatch)
         <div className="btn-container">
           {isAlreadyExistInCart(cartProducts, id) ? (
             <p
-              onClick={(e) =>{ e.stopPropagation();navigate("/cart")}}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate("/cart");
+              }}
               className="card_btn btn btn-primary btn-solid"
             >
               Go To Cart <i class="bi bi-cart-fill"></i>
             </p>
           ) : (
             <p
-              onClick={(e) =>{
+              onClick={(e) => {
                 e.stopPropagation();
                 isLoggedIn
                   ? addItemToCart(cartDispatch, product, encodedToken)
-                  : navigate("/login")}
-              }
+                  : navigate("/login");
+              }}
               className="card_btn btn btn-primary btn-solid"
             >
               Add To Cart<i class="bi bi-cart-fill"></i>
@@ -90,11 +96,12 @@ console.log(cartDispatch)
           )}
 
           <p
-            onClick={(e) =>{e.stopPropagation();
+            onClick={(e) => {
+              e.stopPropagation();
               isLoggedIn
                 ? addToWishList(product, wishlistDispatch, encodedToken)
-                : navigate("/login")}
-            }
+                : navigate("/login");
+            }}
             className="card_btn btn btn-primary btn-outline"
           >
             Add to WishList<i class="bi bi-heart-half"></i>

@@ -1,30 +1,35 @@
 .card_btn {
-    font-size: 0.8rem;
-    width: 8rem;
-    font-weight: 800;
-    text-align: center;
-    padding: 0.4rem 0rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  font-size: 0.8rem;
+  width: 8rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 0.4rem 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
-
+.img-container .product_image.contain {
+  object-fit: contain;
+}
 .card_btn:hover {
-    transition: all 0.54s ease-in-out;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
-
-.product_image:hover {
-    transform: rotate3d(1, 2, 3, 10deg) scale(1.07, 1.07);
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.54s ease-in-out;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .loader_container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .card_btn {
+    padding: 0.7rem 0rem;
+  }
 }

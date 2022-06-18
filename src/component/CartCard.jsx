@@ -58,10 +58,10 @@ const CartCard = ({ product }) => {
           </p>
           <h1>{qty}</h1>
           <p
-            onClick={() =>
+            onClick={() => {
               qty > 1 &&
-              changeTheQuantity(cartDispatch, id, "decrement", encodedToken)
-            }
+                changeTheQuantity(cartDispatch, id, "decrement", encodedToken);
+            }}
             className="btn btn-float"
           >
             <span>
@@ -71,7 +71,9 @@ const CartCard = ({ product }) => {
         </div>
         <div className="btn-container">
           <p
-            onClick={() => removeItemFromCart(id, cartDispatch)}
+            onClick={() => {
+              removeItemFromCart(id, cartDispatch, encodedToken);
+            }}
             className="btn btn-primary btn-solid card_btn"
           >
             Remove From Cart

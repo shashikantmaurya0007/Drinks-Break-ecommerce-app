@@ -31,7 +31,7 @@ const Filter = ({ displayMobileFilter }) => {
   return (
     <section
       className={`filter_container ${
-        !displayMobileFilter ? "displayFilter" : ""
+        !displayMobileFilter ? "displayFilter " : ""
       }`}
     >
       <div className="heading_clearall_btn">
@@ -62,13 +62,13 @@ const Filter = ({ displayMobileFilter }) => {
             }}
             value={price_range}
             min="100"
-            max="1500"
+            max="5000"
             className="slider"
           />
         </div>
         <div className="price_range">
           <h1>From:100</h1>
-          <h1>From:1500</h1>
+          <h1>From:5000</h1>
         </div>
       </div>
 

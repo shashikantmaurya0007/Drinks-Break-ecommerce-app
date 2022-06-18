@@ -9,7 +9,7 @@ const filterinitialstate = {
   rating: 2,
   searchText: "",
   category: [],
-  price_range: 1500,
+  price_range: 5000,
 };
 
 const cartinitialstate = {
