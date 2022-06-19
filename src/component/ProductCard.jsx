@@ -11,6 +11,7 @@ import {
 } from "../state/index";
 import "../styles/ProductListing.css";
 import { useNavigate } from "react-router-dom";
+import { useDebounce } from "../customHooks/useDebounce";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -38,6 +39,24 @@ const ProductCard = ({ product }) => {
     user: { isLoggedIn, encodedToken },
   } = useUser();
 
+  const addToCart = (e) => {
+    e.stopPropagation();
+    debugger;
+    isLoggedIn
+      ? addItemToCart(cartDispatch, product, encodedToken)
+      : navigate("/login");
+  };
+  const addToWishList_ = (e) => {
+    e.stopPropagation();
+    isLoggedIn
+      ? addToWishList(product, wishlistDispatch, encodedToken)
+      : navigate("/login");
+  };
+  const removeFromWishList_ = (e) =>
+    removeFromWishList(id, wishlistDispatch, encodedToken);
+  const debounceAddToCart = useDebounce(addToCart, 400);
+  const debounceAddToWishList = useDebounce(addToWishList_, 400);
+  const debounceRemoveFromWishList = useDebounce(removeFromWishList_, 400);
   return (
     <div
       onClick={() => {
@@ -90,9 +109,7 @@ const ProductCard = ({ product }) => {
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                isLoggedIn
-                  ? addItemToCart(cartDispatch, product, encodedToken)
-                  : navigate("/login");
+                debounceAddToCart(e);
               }}
               className="card_btn btn btn-primary btn-solid"
             >
@@ -104,9 +121,7 @@ const ProductCard = ({ product }) => {
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                isLoggedIn
-                  ? addToWishList(product, wishlistDispatch, encodedToken)
-                  : navigate("/login");
+                debounceAddToWishList(e);
               }}
               className="card_btn btn btn-primary btn-outline"
             >
@@ -116,7 +131,7 @@ const ProductCard = ({ product }) => {
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                removeFromWishList(id, wishlistDispatch, encodedToken);
+                debounceRemoveFromWishList(e);
               }}
               className="card_btn btn btn-primary btn-outline"
             >
