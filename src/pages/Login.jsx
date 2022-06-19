@@ -22,7 +22,6 @@ const Login = () => {
     userDispatch,
   } = useUser();
   const loginTestUser = async () => {
-    debugger;
     const res = await loginUser("shashimourya1@gmail.com", "shashi1234");
     const { status, foundUser, encodedToken } = res;
 

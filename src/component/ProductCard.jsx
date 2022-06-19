@@ -6,6 +6,8 @@ import {
   useWishList,
   addToWishList,
   useUser,
+  isAlreadyExistInWishList,
+  removeFromWishList,
 } from "../state/index";
 import "../styles/ProductListing.css";
 import { useNavigate } from "react-router-dom";
@@ -28,11 +30,14 @@ const ProductCard = ({ product }) => {
     cartDispatch,
     cartState: { cartProducts },
   } = useCart();
-  const { wishlistDispatch } = useWishList();
+  const {
+    wishlistDispatch,
+    wishliststate: { wishlistproducts },
+  } = useWishList();
   const {
     user: { isLoggedIn, encodedToken },
   } = useUser();
-  console.log(cartDispatch);
+
   return (
     <div
       onClick={() => {
@@ -95,17 +100,29 @@ const ProductCard = ({ product }) => {
             </p>
           )}
 
-          <p
-            onClick={(e) => {
-              e.stopPropagation();
-              isLoggedIn
-                ? addToWishList(product, wishlistDispatch, encodedToken)
-                : navigate("/login");
-            }}
-            className="card_btn btn btn-primary btn-outline"
-          >
-            Add to WishList<i class="bi bi-heart-half"></i>
-          </p>
+          {!Boolean(isAlreadyExistInWishList(wishlistproducts, id)) ? (
+            <p
+              onClick={(e) => {
+                e.stopPropagation();
+                isLoggedIn
+                  ? addToWishList(product, wishlistDispatch, encodedToken)
+                  : navigate("/login");
+              }}
+              className="card_btn btn btn-primary btn-outline"
+            >
+              Add to WishList<i class="bi bi-heart-half"></i>
+            </p>
+          ) : (
+            <p
+              onClick={(e) => {
+                e.stopPropagation();
+                removeFromWishList(id, wishlistDispatch, encodedToken);
+              }}
+              className="card_btn btn btn-primary btn-outline"
+            >
+              Remove WishList<i class="bi bi-heart-half"></i>
+            </p>
+          )}
         </div>
       </div>
     </div>

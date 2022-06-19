@@ -199,7 +199,7 @@ export const products = [
     offer: "New",
     rating: 4.8,
   },
-  //
+
   {
     _id: uuid(),
     title: "AntiQuity Blue(750ml)",
@@ -209,7 +209,45 @@ export const products = [
     discountPercent: 6,
     finalPrice: 658,
     category: "whisky",
-    offer: "New",
+    offer: "",
     rating: 4,
+  },
+
+  {
+    _id: uuid(),
+    title: "Absolut Citrom(750ml)",
+    brand: "Absolut",
+    price: 3000,
+    img: "https://onlinealcoholin9372f.zapwp.com/q:l/r:1/wp:1/w:363/u:https://onlinealcohol.in/storage/2020/08/Absolut-Citron-300x375.jpg",
+    discountPercent: 30,
+    finalPrice: 2100,
+    category: "vodka",
+    offer: "New",
+    rating: 3,
+  },
+  {
+    _id: uuid(),
+    title: "Artic Vodka Orange(750ml)",
+    brand: "Artic",
+    price: 1250,
+    img: "https://onlinealcoholin9372f.zapwp.com/q:l/r:1/wp:1/w:1440/u:https://onlinealcohol.in/storage/2020/05/Artic-Vodka-Orange.jpg",
+    discountPercent: 0,
+    finalPrice: 1250,
+    category: "vodka",
+    offer: "Trending",
+    rating: 5,
+  },
+  //
+  {
+    _id: uuid(),
+    title: "Eristoff Red Vodka(750ml)",
+    brand: "Eristoff",
+    price: 1000,
+    img: " https://onlinealcoholin9372f.zapwp.com/q:l/r:1/wp:1/w:363/u:https://onlinealcohol.in/storage/2020/05/Eristoff-Red-Vodka-300x375.jpg",
+    discountPercent: 20,
+    finalPrice: 800,
+    category: "vodka",
+    offer: "",
+    rating: 5,
   },
 ];
