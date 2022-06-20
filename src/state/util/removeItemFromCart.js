@@ -12,7 +12,7 @@ const removeItemFromCart = async (productId, cartDispatch, encodedToken) => {
 
     cartDispatch({ type: CART_ACTION.REMOVE_FROM_CART, payload: cart });
   } catch (error) {
-    console.log(error, localStorage.getItem("token"));
+    error, localStorage.getItem("token");
   }
 };
 

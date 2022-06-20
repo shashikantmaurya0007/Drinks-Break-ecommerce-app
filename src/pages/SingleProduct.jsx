@@ -13,6 +13,7 @@ import {
   isAlreadyExistInWishList,
   removeFromWishList,
 } from "../state/index";
+import { useDebounce } from "../customHooks/useDebounce";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -48,6 +49,17 @@ const SingleProduct = () => {
       }
     })();
   }, [id]);
+
+  const addToCart_ = () => addItemToCart(cartDispatch, product, encodedToken);
+
+  const addToCartDebounce = useDebounce(addToCart_, 400);
+  const manageWishList = () => {
+    isAlreadyExistInWishList(wishlistproducts, product._id)
+      ? removeFromWishList(product._id, wishlistDispatch, encodedToken)
+      : addToWishList(product, wishlistDispatch, encodedToken);
+  };
+
+  const manageWishListDebounce = useDebounce(manageWishList, 400);
 
   return (
     <>
@@ -98,14 +110,7 @@ const SingleProduct = () => {
                   ) : (
                     <p
                       onClick={(e) => {
-                        console.log(
-                          cartDispatch,
-                          product,
-                          encodedToken,
-                          "hello"
-                        );
-
-                        addItemToCart(cartDispatch, product, encodedToken);
+                        addToCartDebounce();
                       }}
                       className="card_btn btn btn-primary btn-solid"
                     >
@@ -113,22 +118,9 @@ const SingleProduct = () => {
                     </p>
                   )}
                   <p
-                    onClick={() => {
-                      isAlreadyExistInWishList(wishlistproducts, product._id)
-                        ? removeFromWishList(
-                            product._id,
-                            wishlistDispatch,
-                            encodedToken
-                          )
-                        : addToWishList(
-                            product,
-                            wishlistDispatch,
-                            encodedToken
-                          );
-                    }}
+                    onClick={() => manageWishListDebounce()}
                     class="btn btn-primary btn-outline"
                   >
-                    {" "}
                     {isAlreadyExistInWishList(wishlistproducts, product._id)
                       ? "Remove From WishList"
                       : "Add to WishList"}

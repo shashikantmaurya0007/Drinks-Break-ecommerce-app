@@ -11,7 +11,7 @@ import {
 const NavbarSearch = () => {
   const { filterDispatch, filterstate } = useFilter();
   const { setShowSearchModal } = useSearch();
-  console.log(filterstate);
+  filterstate;
   const search = (e) => {
     filterDispatch({
       type: FILTER_ACTION.SORT_BY_SEARCH,

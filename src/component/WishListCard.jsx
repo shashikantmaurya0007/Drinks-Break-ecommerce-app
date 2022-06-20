@@ -9,6 +9,7 @@ import {
 } from "../state/index";
 import "../styles/ProductListing.css";
 import { useNavigate } from "react-router-dom";
+import { useDebounce } from "../customHooks/useDebounce";
 
 const WishListCard = ({ product }) => {
   const navigate = useNavigate();
@@ -31,8 +32,19 @@ const WishListCard = ({ product }) => {
   const {
     user: { encodedToken },
   } = useUser();
-  console.log(encodedToken);
+  encodedToken;
   const { wishlistDispatch } = useWishList();
+  const addToCart = (e) => {
+    e.stopPropagation();
+
+    addItemToCart(cartDispatch, product, encodedToken);
+  };
+
+  const removeFromWishList_ = (e) =>
+    removeFromWishList(id, wishlistDispatch, encodedToken);
+  const debounceAddToCart = useDebounce(addToCart, 800);
+
+  const debounceRemoveFromWishList = useDebounce(removeFromWishList_, 400);
 
   return (
     <div
@@ -46,7 +58,7 @@ const WishListCard = ({ product }) => {
       }
 
       <div className="img-container">
-        <img className="product_image" src={img} alt={category} />
+        <img className="product_image contain" src={img} alt={category} />
       </div>
       <div className="lower-card">
         <header style={{ paddingTop: "10px" }}>
@@ -70,28 +82,37 @@ const WishListCard = ({ product }) => {
         <div className="btn-container">
           {isAlreadyExistInCart(cartProducts, id) ? (
             <p
-              onClick={() => navigate("/cart")}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate("/cart");
+              }}
               className="card_btn btn btn-primary btn-solid"
             >
               Go To Cart <i class="bi bi-cart-fill"></i>
             </p>
           ) : (
             <p
-              onClick={() => addItemToCart(cartDispatch, product, encodedToken)}
+              onClick={(e) => {
+                e.stopPropagation();
+                debounceAddToCart(e);
+              }}
               className="card_btn btn btn-primary btn-solid"
             >
               Add To Cart<i class="bi bi-cart-fill"></i>
             </p>
           )}
 
-          <p
-            onClick={() =>
-              removeFromWishList(id, wishlistDispatch, encodedToken)
-            }
-            className="card_btn btn btn-primary btn-outline"
-          >
-            Remove <i class="bi bi-heart-half"></i>
-          </p>
+          {
+            <p
+              onClick={(e) => {
+                e.stopPropagation();
+                debounceRemoveFromWishList(e);
+              }}
+              className="card_btn btn btn-primary btn-outline"
+            >
+              Remove WishList<i class="bi bi-heart-half"></i>
+            </p>
+          }
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useDebounce } from "../customHooks/useDebounce";
 
 import {
   useCart,
@@ -7,6 +8,8 @@ import {
   useUser,
   addToWishList,
   useWishList,
+  isAlreadyExistInWishList,
+  removeFromWishList,
 } from "../state/index";
 
 const CartCard = ({ product }) => {
@@ -27,8 +30,23 @@ const CartCard = ({ product }) => {
   const {
     user: { encodedToken },
   } = useUser();
-  const { wishlistDispatch } = useWishList();
+  const {
+    wishlistDispatch,
+    wishliststate: { wishlistproducts },
+  } = useWishList();
 
+  const decreaseQuantity = () => {
+    qty > 1 && changeTheQuantity(cartDispatch, id, "decrement", encodedToken);
+    qty === 1 && removeItemFromCart(id, cartDispatch, encodedToken);
+  };
+  const debounceDecreaseQuantity = useDebounce(decreaseQuantity, 400);
+  const manageWishList = () => {
+    isAlreadyExistInWishList(wishlistproducts, product._id)
+      ? removeFromWishList(product._id, wishlistDispatch, encodedToken)
+      : addToWishList(product, wishlistDispatch, encodedToken);
+  };
+
+  const manageWishListDebounce = useDebounce(manageWishList, 400);
   return (
     <div className="card shopping_card card_shadow horizontal">
       <div className="img-container horizontal_container">
@@ -58,10 +76,7 @@ const CartCard = ({ product }) => {
           </p>
           <h1>{qty}</h1>
           <p
-            onClick={() => {
-              qty > 1 &&
-                changeTheQuantity(cartDispatch, id, "decrement", encodedToken);
-            }}
+            onClick={() => debounceDecreaseQuantity()}
             className="btn btn-float"
           >
             <span>
@@ -80,11 +95,11 @@ const CartCard = ({ product }) => {
           </p>
           <p
             className="btn btn-primary btn-outline card_btn"
-            onClick={() =>
-              addToWishList(product, wishlistDispatch, encodedToken)
-            }
+            onClick={() => manageWishListDebounce()}
           >
-            Add to WishList
+            {isAlreadyExistInWishList(wishlistproducts, product._id)
+              ? ` Remove WishList`
+              : "Add to WishList"}
           </p>
         </div>
       </div>

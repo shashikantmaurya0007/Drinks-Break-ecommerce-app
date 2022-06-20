@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
 
   const addToCart = (e) => {
     e.stopPropagation();
-    debugger;
+
     isLoggedIn
       ? addItemToCart(cartDispatch, product, encodedToken)
       : navigate("/login");

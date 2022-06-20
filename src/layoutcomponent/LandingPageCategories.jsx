@@ -25,7 +25,7 @@ const LandingPageCategories = () => {
     },
   ];
   const navigateToCategoryProduct = (categoryName) => {
-    console.log(filterinitialstate);
+    filterinitialstate;
     filterDispatch({
       type: FILTER_ACTION.RESET_FILTER,
       payload: { ...filterinitialstate },

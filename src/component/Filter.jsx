@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { useFilter, FILTER_ACTION, filterinitialstate } from "../state/index";
 
 const Filter = ({ displayMobileFilter }) => {
+  const [rangeValue_, setRangeValue] = useState(5000);
   const {
     filterDispatch,
     filterstate: { sort_by, rating, price_range, category },
@@ -50,7 +52,9 @@ const Filter = ({ displayMobileFilter }) => {
         </p>
       </div>
       <div className="price-slider">
-        <h1>Price</h1>
+        <h1>
+          Price:-<span style={{ color: "#22968c"}}>{rangeValue_}</span>
+        </h1>
         <div className="slider-container">
           <input
             type="range"
@@ -59,15 +63,16 @@ const Filter = ({ displayMobileFilter }) => {
                 type: FILTER_ACTION.SORT_BY_PRICE,
                 payload: { ...filterinitialstate, price_range: e.target.value },
               });
+              setRangeValue(e.target.value);
             }}
             value={price_range}
-            min="100"
+            min="160"
             max="5000"
             className="slider"
           />
         </div>
         <div className="price_range">
-          <h1>From:100</h1>
+          <h1>From:160</h1>
           <h1>From:5000</h1>
         </div>
       </div>
