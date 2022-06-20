@@ -32,7 +32,7 @@ const WishListCard = ({ product }) => {
   const {
     user: { encodedToken },
   } = useUser();
-  encodedToken;
+
   const { wishlistDispatch } = useWishList();
   const addToCart = (e) => {
     e.stopPropagation();

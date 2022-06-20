@@ -8,7 +8,7 @@ const registerUser = async ({ email, password, firstName, lastName }) => {
       firstName: firstName,
       lastName: lastName,
     });
-    ({ ...res });
+
     return res.status;
   } catch (e) {
     return e.response.status;

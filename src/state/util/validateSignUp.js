@@ -18,13 +18,13 @@ const validateSignUp = (
     !confirmPassword.trim().length
   )
     return false;
-  lastNameError;
+
   if (
-    firstNameError != "" ||
-    lastNameError != "" ||
-    emailError != "" ||
-    passwordError != "" ||
-    confirmPasswordError != ""
+    firstNameError !== "" ||
+    lastNameError !== "" ||
+    emailError !== "" ||
+    passwordError !== "" ||
+    confirmPasswordError !== ""
   )
     return false;
 

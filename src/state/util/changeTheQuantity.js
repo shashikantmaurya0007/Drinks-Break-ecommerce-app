@@ -6,7 +6,6 @@ const changeTheQuantity = async (
   quantityAction,
   encodedToken
 ) => {
-  cartDispatch, productId, quantityAction;
   const {
     data: { cart },
   } = await axios.post(
