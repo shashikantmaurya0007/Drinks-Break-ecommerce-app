@@ -9,6 +9,7 @@ const removeItemFromCart = async (productId, cartDispatch, encodedToken) => {
         authorization: encodedToken,
       },
     });
+    console.log();
 
     cartDispatch({ type: CART_ACTION.REMOVE_FROM_CART, payload: cart });
   } catch (error) {}
