@@ -60,6 +60,11 @@
 .lab-input {
   position: relative;
 }
+.lab-input input {
+  border: 0px;
+  padding: 0.7rem;
+  border-radius: 0.3rem;
+}
 
 .showPassword_ {
   position: absolute;

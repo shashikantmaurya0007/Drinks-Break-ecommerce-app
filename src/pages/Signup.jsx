@@ -42,7 +42,7 @@ const Signup = () => {
     if (!validate) {
       toast.error("Please fill all the details");
       return;
-    } else if (password != confirmPassword) {
+    } else if (password !== confirmPassword) {
       toast.error("password and confirmPassword didnot match");
 
       return;
@@ -59,7 +59,7 @@ const Signup = () => {
   };
   useEffect(() => {
     isLoggedIn && navigate("/");
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]);
 
   return (
     <main className="signup-container">

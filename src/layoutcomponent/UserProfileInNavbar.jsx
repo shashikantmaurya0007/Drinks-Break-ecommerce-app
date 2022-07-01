@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useUser } from "../state";
 import { USER_AUTH_ACTION } from "../state/action";
+
+import { useOnClickOutside } from "../customHooks/useOnClickOutside";
 
 const UserProfileInNavbar = () => {
   const [disp_, setDisplay] = useState("none");
@@ -11,9 +13,12 @@ const UserProfileInNavbar = () => {
     user: { isLoggedIn, firstName },
     userDispatch,
   } = useUser();
+  const userProfileRef = useRef();
 
+  const closeUserProfile = () => setDisplay("none");
+  useOnClickOutside(userProfileRef, closeUserProfile);
   return (
-    <section>
+    <section ref={userProfileRef}>
       <section>
         <div
           className="container_btn"

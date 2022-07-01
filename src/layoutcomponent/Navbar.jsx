@@ -7,11 +7,12 @@ import { UserProfileInNavbar } from "./UserProfileInNavbar";
 import { HamburgerNavbar } from "./HamburgerNavbar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useCart, useWishList, useSearch } from "../state/index";
+import { useCart, useWishList } from "../state/index";
+import { useDocumentTitle } from "../customHooks";
 
 const Navbar = () => {
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
- 
+  useDocumentTitle();
   const displayHamburger = () => {
     setShowHamburgerMenu((prev) => true);
   };
