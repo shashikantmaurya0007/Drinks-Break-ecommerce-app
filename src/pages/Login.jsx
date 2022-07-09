@@ -151,7 +151,7 @@ const Login = () => {
         </div>
         <div className="login_btn">
           <p className="btn btn-primary btn-solid" onClick={loginTestUser}>
-            Login Test User
+            Login As Test User
           </p>
           <p
             className="btn btn-primary btn-solid"
