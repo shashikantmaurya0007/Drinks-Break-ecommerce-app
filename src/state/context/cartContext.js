@@ -1,4 +1,10 @@
-import { createContext, useReducer, useEffect, useContext } from "react";
+import {
+  createContext,
+  useReducer,
+  useEffect,
+  useContext,
+  useState,
+} from "react";
 import { cartinitialstate } from "../initalstate";
 import { cartReducer } from "../reducers/cartReducer";
 import { CART_ACTION } from "../action";
@@ -24,11 +30,20 @@ const getCartItemsInitially = async (cartDispatch) => {
 
 const useCart = () => useContext(cartcontext);
 const CartProvider = ({ children }) => {
+  const [paymentCelebration, setPaymentCelebration] = useState(false);
+
   const [cartState, cartDispatch] = useReducer(cartReducer, cartinitialstate);
   useEffect(() => getCartItemsInitially(cartDispatch), []);
 
   return (
-    <cartcontext.Provider value={{ cartState, cartDispatch }}>
+    <cartcontext.Provider
+      value={{
+        cartState,
+        cartDispatch,
+        paymentCelebration,
+        setPaymentCelebration,
+      }}
+    >
       {" "}
       {children}{" "}
     </cartcontext.Provider>

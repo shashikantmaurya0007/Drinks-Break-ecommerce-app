@@ -8,13 +8,21 @@ import {
   useUser,
   isAlreadyExistInWishList,
   removeFromWishList,
+  useSearch,
+  useFilter,
+  FILTER_ACTION,
 } from "../state/index";
 import "../styles/ProductListing.css";
 import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../customHooks/useDebounce";
-
+import { filterinitialstate } from "../state";
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+  const {
+    filterDispatch,
+    filterstate: { searchText },
+  } = useFilter();
+
   const {
     _id: id,
     brand,
@@ -57,10 +65,22 @@ const ProductCard = ({ product }) => {
   const debounceAddToCart = useDebounce(addToCart, 400);
   const debounceAddToWishList = useDebounce(addToWishList_, 400);
   const debounceRemoveFromWishList = useDebounce(removeFromWishList_, 400);
+  const { setShowSearchModal } = useSearch();
+  const closeSearchBar = () => {
+    setShowSearchModal((prev) => false);
+    filterDispatch({
+      type: FILTER_ACTION.SORT_BY_SEARCH,
+      payload: {
+        ...filterinitialstate,
+        searchText: "",
+      },
+    });
+  };
   return (
     <div
       onClick={() => {
         navigate(`/product/${id}`);
+        closeSearchBar();
       }}
       className={`card card_overlay shopping_card card_shadow vertical ${
         offer && "offer"
@@ -99,6 +119,7 @@ const ProductCard = ({ product }) => {
             <p
               onClick={(e) => {
                 e.stopPropagation();
+                closeSearchBar();
                 navigate("/cart");
               }}
               className="card_btn btn btn-primary btn-solid"

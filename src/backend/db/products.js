@@ -78,18 +78,7 @@ export const products = [
     offer: "Trending",
     rating: 5,
   },
-  {
-    _id: uuid(),
-    title: "Kingfisher Ultra Max(650ml)",
-    brand: "KingFisher",
-    price: 210,
-    img: "https://cdn.dotpe.in/item/1474431/kingfisher_max_qt.jpg",
-    discountPercent: 10,
-    finalPrice: 189,
-    category: "beer",
-    offer: "Trending",
-    rating: 3,
-  },
+
   {
     _id: uuid(),
     title: "Kingfisher Strong(500ml)",
@@ -99,7 +88,7 @@ export const products = [
     discountPercent: 0,
     finalPrice: 160,
     category: "beer",
-    offer: "",
+    offer: "Trending",
     rating: 3.9,
   },
   {

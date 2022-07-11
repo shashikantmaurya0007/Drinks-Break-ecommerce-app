@@ -65,6 +65,16 @@ const CartCard = ({ product }) => {
         </p>
         <div className="cart_product_quantity">
           <p
+            onClick={() => debounceDecreaseQuantity()}
+            className="btn btn-float"
+          >
+            <span>
+              <i className="bi bi-dash"></i>
+            </span>
+          </p>
+          <h1>{qty}</h1>
+
+          <p
             onClick={() =>
               changeTheQuantity(cartDispatch, id, "increment", encodedToken)
             }
@@ -72,15 +82,6 @@ const CartCard = ({ product }) => {
           >
             <span>
               <i className="bi bi-plus"></i>
-            </span>
-          </p>
-          <h1>{qty}</h1>
-          <p
-            onClick={() => debounceDecreaseQuantity()}
-            className="btn btn-float"
-          >
-            <span>
-              <i className="bi bi-dash"></i>
             </span>
           </p>
         </div>
