@@ -141,14 +141,7 @@ const Login = () => {
           <p className="form_error">{passwordError}</p>
         </div>
 
-        <div className="checkbox check_ ">
-          <label for="checkbox-2">
-            <input id="checkbox-2" name="checkbox" type="checkbox" />
-            Remember me
-          </label>
-
-          <p className="btn btn-primary btn-link">Forgot Password?</p>
-        </div>
+        <div className="checkbox check_ "></div>
         <div className="login_btn">
           <p className="btn btn-primary btn-solid" onClick={loginTestUser}>
             Login As Test User
